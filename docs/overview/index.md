@@ -16,7 +16,7 @@ micro_nav:
 page_nav:
     next:
         content: Challenges
-        url: '/docs/overview/challenges/'
+        url: '/docs/overview/challenges'
 ---
 
 <!-- 

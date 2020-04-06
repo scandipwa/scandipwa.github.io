@@ -18,10 +18,10 @@ micro_nav:
 page_nav:
     prev:
         content: Base template
-        url: '/docs/cookbook/base-template/'
+        url: '/docs/cookbook/base-template'
     next:
         content: Connecting resolver
-        url: '/docs/cookbook/connecting-resolver/'
+        url: '/docs/cookbook/connecting-resolver'
 
 ---
 

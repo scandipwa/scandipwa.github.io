@@ -18,10 +18,10 @@ micro_nav:
 page_nav:
     prev:
         content: Service overview
-        url: '/docs/docker/services/'
+        url: '/docs/docker/services'
     next:
         content: Environment configuration
-        url: '/docs/docker/configuration/'
+        url: '/docs/docker/configuration'
 
 ---
 

@@ -18,7 +18,7 @@ micro_nav:
 page_nav:
     prev:
         content: Creating resolver
-        url: '/docs/cookbook/creating-resolver/'
+        url: '/docs/cookbook/creating-resolver'
 
 ---
 

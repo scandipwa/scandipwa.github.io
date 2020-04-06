@@ -18,7 +18,7 @@ micro_nav:
 page_nav:
     next:
         content: File Structure
-        url: '/docs/development/file-structure/'
+        url: '/docs/development/file-structure'
 ---
 
 ## VSCode

@@ -18,10 +18,10 @@ micro_nav:
 page_nav:
     prev:
         content: File Structure
-        url: '/docs/development/file-structure/'
+        url: '/docs/development/file-structure'
     next:
         content: Extension mechanism
-        url: '/docs/development/extension/'
+        url: '/docs/development/extension'
 
 ---
 

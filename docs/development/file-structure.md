@@ -18,10 +18,10 @@ micro_nav:
 page_nav:
     prev:
         content: Tools of ScandiPWA
-        url: '/docs/development/tools/'
+        url: '/docs/development/tools'
     next:
         content: Data-flow diagram
-        url: '/docs/development/data-flow/'
+        url: '/docs/development/data-flow'
 
 ---
 

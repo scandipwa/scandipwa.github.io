@@ -18,10 +18,10 @@ micro_nav:
 page_nav:
     prev:
         content: Environment configuration
-        url: '/docs/docker/configuration/'
+        url: '/docs/docker/configuration'
     next:
         content: Infrastructure differences
-        url: '/docs/docker/infrastructure/'
+        url: '/docs/docker/infrastructure'
 
 ---
 

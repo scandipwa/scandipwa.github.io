@@ -17,7 +17,7 @@ buttons:
       external_url: true
     - icon: arrow-right
       content: Let's get started
-      url: '/docs/installation/'
+      url: '/docs/installation'
       external_url: false
 
 # Author box
@@ -32,29 +32,29 @@ grid_navigation:
     - title: Overview
       excerpt: The problem which our solution solves and the motivation behind the chosen technology stack.
       cta: Read more
-      url: '/docs/overview/'
+      url: '/docs/overview'
     - title: Installation
       excerpt: ScandiPWA is a theme for Magento 2. It can be installed using Docker or on existing Magento instance.
       cta: Read more
-      url: '/docs/installation/'
+      url: '/docs/installation'
     - title: FAQ
       excerpt: Common questions regarding the project installation.
       cta: Read more
-      url: '/docs/installation/faq/'
+      url: '/docs/installation/faq'
     - title: Development
       excerpt: The best-practices working with ScandiPWA. Everything that the developer must know.
       cta: Read more
-      url: '/docs/development/'
+      url: '/docs/development'
     - title: Extension
       excerpt: Learn how to modify the application appearance, without modifying the source files.
       cta: Read more
-      url: '/docs/development/extension/'
+      url: '/docs/development/extension'
     - title: Cookbook
       excerpt: Guide to common problems. A tutorial and best-practices mix-up.
       cta: Read more
-      url: '/docs/cookbook/'
+      url: '/docs/cookbook'
     - title: Docker guide
       excerpt: Understand how it works, see how to Xdebug and work with it's CLI.
       cta: Read more
-      url: '/docs/docker/'
+      url: '/docs/docker'
 ---

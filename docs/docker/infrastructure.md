@@ -18,7 +18,7 @@ micro_nav:
 page_nav:
     prev:
         content: Xdebug
-        url: '/docs/docker/xdebug/'
+        url: '/docs/docker/xdebug'
 
 ---
 

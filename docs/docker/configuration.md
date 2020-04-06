@@ -18,10 +18,10 @@ micro_nav:
 page_nav:
     prev:
         content: Useful CLI commands
-        url: '/docs/docker/cli/'
+        url: '/docs/docker/cli'
     next:
         content: Xdebug
-        url: '/docs/docker/xdebug/'
+        url: '/docs/docker/xdebug'
 
 ---
 

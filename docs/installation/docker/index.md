@@ -19,13 +19,13 @@ grid_navigation:
     - title: On Linux
       excerpt: Currently supported
       cta: Read more
-      url: '/docs/installation/docker/linux/'
+      url: '/docs/installation/docker/linux'
     - title:  On Mac
       excerpt: Currently NOT officially supported
       cta: Read more
-      url: '/docs/installation/docker/mac/'
+      url: '/docs/installation/docker/mac'
     - title: On Windows
       excerpt: Currently NOT supported
       cta: Read more
-      url: '/docs/installation/docker/windows/'
+      url: '/docs/installation/docker/windows'
 ---

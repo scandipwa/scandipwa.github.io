@@ -18,7 +18,7 @@ micro_nav:
 page_nav:
     next:
         content: Useful CLI commands
-        url: '/docs/docker/cli/'
+        url: '/docs/docker/cli'
 
 ---
 

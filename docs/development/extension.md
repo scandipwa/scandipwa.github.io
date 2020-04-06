@@ -18,10 +18,10 @@ micro_nav:
 page_nav:
     prev:
         content: Data-flow diagram
-        url: '/docs/development/data-flow/'
+        url: '/docs/development/data-flow'
     next:
         content: Debugging
-        url: '/docs/development/debugging/'
+        url: '/docs/development/debugging'
 
 ---
 
