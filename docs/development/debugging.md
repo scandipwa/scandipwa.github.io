@@ -22,7 +22,9 @@ page_nav:
 
 ## Watch an explanation video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/LBSovCTT7rM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/LBSovCTT7rM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ## From the class name to the component
 

@@ -30,7 +30,9 @@ The source theme (composer installed) is located in `vendor/scandipwa/source`. R
 
 ## Watch an explanation video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/vrFJDLS-K3s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/vrFJDLS-K3s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ## Observe Magento related files
 

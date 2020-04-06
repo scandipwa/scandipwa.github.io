@@ -24,7 +24,9 @@ page_nav:
 
 ## Watch an explanation video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3T3OeCaSWLA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/3T3OeCaSWLA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ## The data-flow diagram
 

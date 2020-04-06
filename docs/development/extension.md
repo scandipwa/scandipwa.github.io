@@ -26,7 +26,9 @@ ScandiPWA is not meant to be modified, rather extended. This means no changes mu
 
 ## Watch an explanation video
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/j2IamYU7f_M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/j2IamYU7f_M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ## A step-by-step algorithm for JavaScript
 

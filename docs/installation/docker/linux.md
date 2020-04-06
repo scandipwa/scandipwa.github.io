@@ -15,7 +15,9 @@ micro_nav: true
 
 ## Follow me setting the theme up
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/IOXSBcCBvCw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/IOXSBcCBvCw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ## Before you start
 

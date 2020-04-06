@@ -28,7 +28,9 @@ At some point of time, we come to a point, where current schema is just not prov
 
 ## Watch the tutorial
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/RPE36f0xQRI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/RPE36f0xQRI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ## General rule
 

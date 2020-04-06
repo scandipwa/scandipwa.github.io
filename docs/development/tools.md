@@ -22,7 +22,9 @@ page_nav:
 
 The tools and editors are essential. For PHP - there is a standard "PHPStorm" for React development we encourage using [VSCode](https://code.visualstudio.com/). This is a very popular code editor, with a powerful extension API. We even [have our own](https://github.com/scandipwa/scandipwa-development-toolkit) to help you develop your store faster! Watch the video to configure your editor!
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/hmzcmb611x0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/hmzcmb611x0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 The  VSCode extensions mentioned:
 - [Better comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments) - the comment highlights
@@ -40,13 +42,17 @@ Matching code-style is very important. The consistent tabulation, the proper imp
 
 > **Note**: it is mandatory to install the ESLint and StyleLint! This will help a lot later, when inspecting the source code or contributing! Please do not skip this step!
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/3nO6m4zDnqs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/3nO6m4zDnqs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ## Chrome remote Debugging
 
 Configuring the remote debugging can be quite challenging. Debugging in the browser requires additional tools. Watch the tutorial video, and configure your Chrome and VSCode for remote debugging.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/cyDwoVLH_hA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/cyDwoVLH_hA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 Chrome extensions mentioned in this video:
 - [React Developer Tools](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) - the component state & props inspector
@@ -56,7 +62,9 @@ Chrome extensions mentioned in this video:
 
 Knowing the GraphQL schema is important. Using reliable tools from the very begging is crucial for fast delivery. Install them beforehand.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/27IHNDG4Kaw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/27IHNDG4Kaw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 The tools mentioned in the video:
 - [GraphQL Playground](https://github.com/prisma-labs/graphql-playground) - the best GraphQL schema editor
