@@ -9,7 +9,10 @@ title: Extension mechanism
 description: Build on top of the vendor theme like in M2 - just create a file with the same name and location!
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/development'
+  title: Development
 
 # Page navigation
 page_nav:

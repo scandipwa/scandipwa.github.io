@@ -9,7 +9,10 @@ title: Changing environment
 description: All service versions are stored and taken from variables, independently configurable for each environment.
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/docker'
+  title: Docker
 
 # Page navigation
 page_nav:

@@ -9,7 +9,10 @@ title: Xdebug
 description: Learn how to configure and use the most powerful debugger for PHP!
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/docker'
+  title: Docker
 
 # Page navigation
 page_nav:

@@ -9,7 +9,10 @@ title: Tools of ScandiPWA
 description: Make sure your development tools are configured!
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/development'
+  title: Development
 
 # Page navigation
 page_nav:

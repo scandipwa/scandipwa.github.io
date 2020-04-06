@@ -2,9 +2,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12">
-				<a href="{% if jekyll.environment == 'production' %}{{ site.doks.baseurl }}{% endif %}/" class="micro-nav__back">
+				<a href="{% if jekyll.environment == 'production' %}{{ site.doks.baseurl }}{% endif %}{% if page.micro_nav.url %}{{ page.micro_nav.url }}{% else %}/{% endif %}" class="micro-nav__back">
 					<i class="icon icon--arrow-left"></i>
-					Back to homepage
+					Back to {% if page.micro_nav.title %}{{ page.micro_nav.title }}{% else %}homepage{% endif %}
 				</a><!-- /.micro-nav__back -->
 			</div><!-- /.col -->
 		</div><!-- /.row -->

@@ -9,7 +9,10 @@ title: Service overview
 description: How to operate the stack, see logs, enter the container & more!
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/docker'
+  title: Docker
 
 # Page navigation
 page_nav:

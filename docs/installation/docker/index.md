@@ -9,7 +9,10 @@ title: Docker setup
 description: Magento 2 + ScandiPWA in one Docker setup
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/installation'
+  title: Installation
 
 # Page navigation
 grid_navigation:

@@ -9,7 +9,10 @@ title: Infrastructure differences
 description: Learn ScandiPWA additional stack requirements to the Magento stack
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/docker'
+  title: Docker
 
 # Page navigation
 page_nav:

@@ -9,7 +9,10 @@ title: Challenges
 description: SPA application challenges
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/overview'
+  title: Overview
 
 # Page navigation
 page_nav:

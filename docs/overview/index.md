@@ -9,7 +9,8 @@ title: Introduction
 description: Difference between usual Magento 2 and ScandiPWA
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
 
 # Page navigation
 page_nav:

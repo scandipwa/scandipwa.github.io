@@ -9,7 +9,10 @@ title: Setup on existing Magento 2 instance
 description: ScandiPWA is a simple Magento theme. We can install it on existing Magento instance using composer.
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/installation'
+  title: Installation
 
 ---
 

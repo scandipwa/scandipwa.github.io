@@ -9,7 +9,10 @@ title: Base template
 description: Every design is different. But each has some base elements it is build out of. These base elements, common styles, resets are called project's "base-template".
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/cookbook'
+  title: Cookbook
 
 # Page navigation
 page_nav:

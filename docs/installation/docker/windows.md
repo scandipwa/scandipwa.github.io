@@ -9,7 +9,10 @@ title: Windows Docker setup
 description: This guide is for setting up on Windows machines. This guide is meant for <b>local installation only</b>.
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/installation/docker'
+  title: Docker
 
 ---
 

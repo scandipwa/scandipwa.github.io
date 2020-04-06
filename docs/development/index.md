@@ -9,7 +9,8 @@ title: Development
 description: The best-practices working with ScandiPWA.
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
 
 # Page navigation
 grid_navigation:

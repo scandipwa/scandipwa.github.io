@@ -9,7 +9,10 @@ title: How we are different?
 description: Compare ScandiPWA to other solutions
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/overview'
+  title: Overview
 
 # Page navigation
 page_nav:

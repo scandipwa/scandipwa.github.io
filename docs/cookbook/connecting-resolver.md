@@ -9,7 +9,10 @@ title: Connecting to the GraphQL resolver
 description: Important step to promote your server data on to your application presentation layer.
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/cookbook'
+  title: Cookbook
 
 # Page navigation
 page_nav:

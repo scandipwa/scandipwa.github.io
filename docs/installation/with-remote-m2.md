@@ -9,7 +9,10 @@ title: Setting up the theme with remote M2 server
 description: This type of installation is helpful, when your aim is NOT to develop a backend functionality, rather only modify frontend.
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/installation'
+  title: Installation
 
 ---
 

@@ -9,7 +9,10 @@ title: File Structure
 description: Learn where to search and what to search.
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/development'
+  title: Development
 
 # Page navigation
 page_nav:

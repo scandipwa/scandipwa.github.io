@@ -9,7 +9,10 @@ title: Data-flow diagram
 description: The data is passed through the application constantly. Multiple application parts are responsible for this data processing. Learn the main actors, data-pipes and conditions in this guide!
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/development'
+  title: Development
 
 # Page navigation
 page_nav:

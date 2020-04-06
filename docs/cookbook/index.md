@@ -9,7 +9,8 @@ title: Cookbook
 description: Time to begin the project development! Let's take a look on our recommendations on real project development. From the base-template creation to the component architecture and most common code-review mistakes.
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
 
 # Page navigation
 grid_navigation:

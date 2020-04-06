@@ -9,7 +9,8 @@ title: Docker guide
 description: ScandiPWA docker setup instructions.
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
 
 # Page navigation
 grid_navigation:

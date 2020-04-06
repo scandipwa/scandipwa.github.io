@@ -9,7 +9,10 @@ title: Mac Docker setup
 description: This guide is for setting up on Mac machines. This guide is meant for <b>local installation only</b>.
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/installation/docker'
+  title: Docker
 
 ---
 

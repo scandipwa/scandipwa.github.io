@@ -9,7 +9,10 @@ title: Debugging guide
 description: From chrome inspector to the source folder. Let us guide you. Forget about searching in the project source-code for some abstract code-logic, everything is now transparent! How? Because we are using BEM and flat file structures.
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/development'
+  title: Development
 
 # Page navigation
 page_nav:

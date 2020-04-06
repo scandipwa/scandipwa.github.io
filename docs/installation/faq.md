@@ -8,7 +8,10 @@ comments: false
 title: FAQ
 
 # Micro navigation
-micro_nav: true
+micro_nav:
+  enabled: true
+  url: '/docs/installation'
+  title: Installation
 
 ---
 
