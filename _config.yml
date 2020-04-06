@@ -1,0 +1,39 @@
+# Theme settings
+doks:
+    baseurl:
+    color_theme: red # Available themes: blue (default), green, purple, red and yellow
+    header:
+        logo:
+            text: ScandiPWA
+            image:
+        nav:
+            - item_name: Star us on GitHub
+              item_url: 'https://github.com/scandipwa/base-theme'
+            - item_name: Join or community Slack
+              item_url: 'https://join.slack.com/t/scandipwa/shared_invite/enQtNzE2Mjg1Nzg3MTg5LTQwM2E2NmQ0NmQ2MzliMjVjYjQ1MTFiYWU5ODAyYTYyMGQzNWM3MDhkYzkyZGMxYTJlZWI1N2ExY2Q1MDMwMTk'
+    footer:
+        content:
+            logo:
+                text: ScandiPWA
+                image:
+            copyright: Copyright &copy; 2020. - ScandiPWA <br>All rights reserved.
+        social_list:
+            - network_name: youtube
+              profile_url: 'https://www.youtube.com/channel/UCvnxo7rh5NRwvMHtJga9fww/videos'
+            - network_name: twitter
+              profile_url: 'https://twitter.com/scandipwa'
+    google_analytics:
+        tracking_code: # Add your Google Analytics tracking code to activate Google Analytics
+    comments:
+        disqus_forum_shortname: # Add your disqus forum shortname to activate comments
+
+# SASS settings
+sass:
+    sass_dir: ./doks-theme/_sass
+    style: :compressed
+
+# Jekyll settings
+layouts_dir: ./doks-theme/_layouts
+includes_dir: ./doks-theme/_includes
+exclude: [ 'README.md', 'CHANGELOG.md' ]
+permalink: /:title/

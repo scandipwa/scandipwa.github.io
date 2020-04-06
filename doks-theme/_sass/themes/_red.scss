@@ -1,0 +1,51 @@
+/**
+ * Red (themes/_red.scss)
+ */
+
+/* ----- Hero subheader ----- */
+.red {
+	.hero-subheader {
+		background-color: $color-theme-red;
+	}
+}
+
+/* ----- Footer ----- */
+.red {
+	.site-footer {
+		background-color: lighten($color-theme-red, 40);
+	}
+}
+
+/* ----- Nav grid ----- */
+.red {
+	.nav-grid__item {
+		background-color: lighten($color-theme-red, 20);
+
+		&:hover,
+		&:active,
+		&:focus {
+			background-color: lighten($color-theme-red, 12);
+		}
+	}
+}
+
+/* ----- Section ----- */
+.red {
+	.section--darker-theme-color-bg {
+		background-color: darken($color-theme-red, 5);
+	}
+}
+
+/* ----- Page nav ----- */
+.red {
+	.page-nav {
+		background-color: $color-theme-red;
+	}
+}
+
+/* ----- Error 404 ----- */
+.red {
+	&.error-404 {
+		background-color: $color-theme-red;
+	}
+}
