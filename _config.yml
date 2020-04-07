@@ -1,3 +1,8 @@
+url: "https://docs.scandipwa.com"
+
+plugins:
+  - jekyll-sitemap
+
 # Theme settings
 doks:
     baseurl:

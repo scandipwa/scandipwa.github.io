@@ -302,7 +302,7 @@ Stuck? Don't know where to start? Checkout our development guide! It will guide 
 
 Follow this simple algorithm:
 
-1. Refer to the [FAQ page](/setup/docker/faq.md). It most probably already has the solution to your problem.
+1. Refer to the [FAQ page](/docs/installation/faq). It most probably already has the solution to your problem.
 
 2. If the issue still persists, [join our community slack](https://join.slack.com/t/scandipwa/shared_invite/enQtNzE2Mjg1Nzg3MTg5LTQwM2E2NmQ0NmQ2MzliMjVjYjQ1MTFiYWU5ODAyYTYyMGQzNWM3MDhkYzkyZGMxYTJlZWI1N2ExY2Q1MDMwMTk), and feel free to ask questions in `#pwa_tech` public channel.
 
