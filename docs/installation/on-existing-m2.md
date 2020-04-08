@@ -18,7 +18,9 @@ micro_nav:
 
 ## Watch video
 
-> **Note**: video is coming soon!
+<div class="video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/JfvC3PcaHPU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ## Before you start
 
