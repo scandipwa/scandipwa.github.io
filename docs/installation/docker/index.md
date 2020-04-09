@@ -21,7 +21,7 @@ grid_navigation:
       cta: Read more
       url: '/docs/installation/docker/linux'
     - title:  On Mac
-      excerpt: Currently NOT officially supported
+      excerpt: Currently in BETA
       cta: Read more
       url: '/docs/installation/docker/mac'
     - title: On Windows
