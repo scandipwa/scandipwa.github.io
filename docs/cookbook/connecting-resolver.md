@@ -19,6 +19,9 @@ page_nav:
     prev:
         content: Creating resolver
         url: '/docs/cookbook/creating-resolver'
+    next:
+        content: Granular caching
+        url: '/docs/cookbook/caching'
 
 ---
 

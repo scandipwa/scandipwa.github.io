@@ -26,4 +26,8 @@ grid_navigation:
       excerpt: Learn how to connect GraphQL resolver to the front-end and make the data request.
       cta: Read more
       url: '/docs/cookbook/connecting-resolver'
+    - title: Implementing granular cache
+      excerpt: Learn how to implement cache identities, for granular data caching!
+      cta: Read more
+      url: '/docs/cookbook/caching'
 ---

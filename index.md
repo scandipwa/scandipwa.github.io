@@ -22,7 +22,7 @@ buttons:
 
 # Author box
 # author:
-#     title: About Author
+#     title: Learn
 #     title_url: '#'
 #     external_url: true
 #     description: Author description
