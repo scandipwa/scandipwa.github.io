@@ -57,6 +57,9 @@ micro_nav:
     # use `inapp` to quickly get inside of the app container
     alias inapp="docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml -f docker-compose.frontend.yml exec -u user app"
 
+    # use `infront` to quickly get inside of the frontend container
+    alias infront="docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml -f docker-compose.frontend.yml exec -w /var/www/public/app/design/frontend/Scandiweb/pwa/ frontend"
+
     # use `applogs` to quickly see the last 100 lines of app container logs
     alias applogs="docker-compose logs -f --tail=100 app"
 
@@ -296,7 +299,7 @@ To get the [demo.scandipwa.com](https://demo.scandipwa.com/) content (but withou
 
 Stuck? Don't know where to start? Checkout our development guide! It will guide you through the best-practices working with ScandiPWA! How to debug, configure the code-editor, code-style checker and create your first base-template! This, and much-much more in:
 
-[<span class="Button">Our awesome development guide</span>](/scandipwa/development.md)
+[Our awesome development guide](/docs/development/)
 
 ## Something does not work?
 

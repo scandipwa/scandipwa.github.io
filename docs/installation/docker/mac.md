@@ -6,7 +6,7 @@ comments: false
 
 # Hero section
 title: Mac Docker setup
-description: This guide is for setting up on Mac machines. This guide is meant for <b>local installation only</b> and currently is in beta. Working with Mutagen is recommended for experienced developers only.
+description: This guide is for setting up on Mac machines. This guide is meant for <b>local installation only</b>.
 
 # Micro navigation
 micro_nav:
@@ -15,7 +15,6 @@ micro_nav:
   title: Docker
 
 ---
-> **Note**: there is ongoing development to make our setup work faster and reliable with this platform. Track the **Mutagen** pull-request [here](https://github.com/scandipwa/scandipwa-base/pull/63)
 
 ## Before you start
 
@@ -59,6 +58,9 @@ micro_nav:
     # use `inapp` to quickly get inside of the app container
     alias inapp="docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml -f docker-compose.frontend.yml exec -u user app"
 
+    # use `infront` to quickly get inside of the frontend container
+    alias infront="docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml -f docker-compose.frontend.yml exec -w /var/www/public/app/design/frontend/Scandiweb/pwa/ frontend"
+
     # use `applogs` to quickly see the last 100 lines of app container logs
     alias applogs="docker-compose logs -f --tail=100 app"
 
@@ -66,7 +68,9 @@ micro_nav:
     alias frontlogs="docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml -f docker-compose.frontend.yml logs -f --tail=100 frontend"
     ```
 
-    Those aliases are required to have all services available at all times. Otherwise, if just using `docker-compose` only services defined in `docker-composer.yml` will be available. Understand what services are available at all by reading [this part of our documentation](https://docs.scandipwa.com/#/docker/03-services?id=list-of-available-services). Mutagen is necessary for Mac platform to improve performance. It is used to sync files between the host and docker container. There are some points you need to bear in mind while working with mutagen coming soon!
+    Those aliases are required to have all services available at all times. Otherwise, if just using `docker-compose` only services defined in `docker-composer.yml` will be available. Understand what services are available at all by reading [this part of our documentation](https://docs.scandipwa.com/#/docker/03-services?id=list-of-available-services).
+
+    > **Note**: Mutagen is necessary for Mac platform to improve performance. It is used to sync files between the host and docker container. There are some points you need to bear in mind while working with mutagen coming soon!
 
 5. Make sure you have a valid Magento 2 `COMPOSER_AUTH` set. This is an environment variable set on your host machine. To test if it is set, use:
 
@@ -152,7 +156,7 @@ micro_nav:
 
 There are two ways to use the setup: with `frontend` container and without it. The setup with `frontend` container is called **development**. The alias running it is `front`. The alias for **production**-like run is `localtheme`.
 
-> **Note**: If you have already ran ScandiPWA in any mode once, you can safely skip to step 6. In case, of course, you plan on development.
+> **Note**: If you have already ran ScandiPWA in any mode once, you can safely skip to step 3. In case, of course, you plan on development.
 
 ***
 
@@ -176,8 +180,6 @@ There are two ways to use the setup: with `frontend` container and without it. T
 
     # without aliases (not recommended)
     docker-compose logs -f --tail=100 app
-
-    # For frontend container
     ```
 
     If you can see following output, the application is ready!
@@ -216,11 +218,7 @@ There are two ways to use the setup: with `frontend` container and without it. T
     ℹ ｢wdm｣: Compiled successfully
     ```
 
-    > **Note**: the requests to `/graphql` will still fail, you need to wait until the `app` container starts. See instruction in step 5 to see how.
-
-## Updating Mutagen setup
-
-  To update the setup you need to get the last changes and sometimes **rebuild app and/or frontend containers**.
+    > **Note**: the requests to `/graphql` will still fail, you need to wait until the `app` container starts. See instruction in step 2 to see how.
 
 ## How to access the site?
 
@@ -308,7 +306,7 @@ To get the [demo.scandipwa.com](https://demo.scandipwa.com/) content (but withou
 
 Stuck? Don't know where to start? Checkout our development guide! It will guide you through the best-practices working with ScandiPWA! How to debug, configure the code-editor, code-style checker and create your first base-template! This, and much-much more in:
 
-[<span class="Button">Our awesome development guide</span>](/scandipwa/development.md)
+[Our awesome development guide](/docs/development/)
 
 ## Something does not work?
 

@@ -20,8 +20,8 @@ grid_navigation:
       excerpt: Currently supported
       cta: Read more
       url: '/docs/installation/docker/linux'
-    - title:  On Mac
-      excerpt: Currently in BETA
+    - title: On Mac
+      excerpt: Currently supported
       cta: Read more
       url: '/docs/installation/docker/mac'
     - title: On Windows
