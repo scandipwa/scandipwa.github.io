@@ -481,3 +481,7 @@ You have executed the installation in the wrong order. First must come the **pro
     ```
 
 > Remember, initial project setup must happen in **production**-like mode. Only later (on next run) you can switch to **development**.
+
+## ERROR: for <container> unauthorized ...
+
+In case issue like this is displayed, you need to login into docker-hub. Then docker will allow you to pull necessary images. See [official instruction](https://docs.docker.com/engine/reference/commandline/login/) to login.
