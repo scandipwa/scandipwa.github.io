@@ -58,6 +58,8 @@ micro_nav:
 
     > **Note**: steps 5. and 6. are the requirements of `scandipwa/persisted-query` package.
 
+6. Make sure your server is configured to point into `<MAGENTO ROOT>/pub` directory.
+
 ## It is time to setup!
 
 1. Install `scandipwa/installer` using following command:
@@ -106,6 +108,8 @@ micro_nav:
     ```bash
     php bin/magento scandipwa:theme:bootstrap <YOUR VENDOR>/<YOUR THEME>
     ```
+
+    > **Note**: If the name is different from `Scandiweb/pwa`, edit the `<THEME ROOT>/src/config/webpack.production.config.js` configuration file. Specifically update the `publicPath` constant declaration to match `<YOUR VENDOR>/<YOUR THEME>`.
 
 4. Go to the bootstrapped theme folder, and install the dependencies and compile a project:
 
