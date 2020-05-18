@@ -24,7 +24,7 @@ micro_nav:
 
 ## Before you start
 
-1. Make sure your server is running `Magento 2.3.3`.
+1. Make sure your server is running Magento `2.3.3`, or `2.3.5`. Version `2.3.4` is not supported.
 
 2. Make sure Redis is available on the host machine. Obtain the host, port of this service.
 
