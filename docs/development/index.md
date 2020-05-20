@@ -30,6 +30,10 @@ grid_navigation:
       excerpt: No modification to the source-code, fluid migrations from version to version.
       cta: Read more
       url: '/docs/development/extension'
+    - title: Plugin mechanism
+      excerpt: Learn how to implement a frontend plugin!
+      cta: Read more
+      url: '/docs/development/frontend-plugins'
     - title: Debugging guide
       excerpt: Being able to find out what is going on, why, and where is crucial for an effective project delivery.
       cta: Read more

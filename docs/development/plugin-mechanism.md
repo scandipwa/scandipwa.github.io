@@ -5,27 +5,27 @@ keywords:
 comments: false
 
 # Hero section
-title: Creating a frontend extension
-description: Implement pluggable extension for frontend.
+title: Creating a ScandiPWA plugin
+description: Implement a plugin with frontend functionality for ScandiPWA.
 
 # Micro navigation
 micro_nav:
   enabled: true
-  url: '/docs/cookbook'
-  title: Cookbook
+  url: '/docs/development'
+  title: Development
 
 # Page navigation
 page_nav:
     prev:
-        content: Connect to GraphQL resolver
-        url: '/docs/cookbook/connecting-resolver'
+        content: Extension mechanism
+        url: '/docs/development/extension'
     next:
-        content: Implementing granular cache
-        url: '/docs/cookbook/caching'
+        content: Debugging
+        url: '/docs/development/debugging'
 
 ---
 
-ScandiPWA supports frontend extensions, which allow plugging into ScandiPWA functionality and reusing one piece of code throughout a lot of completely different projects. This guide is devoted to key things you should know when creating such extension.
+ScandiPWA supports frontend plugins, which allow reusing one piece of code throughout a lot of completely different projects. This guide is devoted to key things you should know when creating such extension.
 
 ## Watch an explanation video
 

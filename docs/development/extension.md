@@ -20,8 +20,8 @@ page_nav:
         content: Data-flow diagram
         url: '/docs/development/data-flow'
     next:
-        content: Debugging
-        url: '/docs/development/debugging'
+        content: Plugin mechanism
+        url: '/docs/development/plugin-mechanism'
 
 ---
 

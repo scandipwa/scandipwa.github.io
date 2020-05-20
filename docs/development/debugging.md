@@ -17,8 +17,8 @@ micro_nav:
 # Page navigation
 page_nav:
     prev:
-        content: Extension mechanism
-        url: '/docs/development/extension'
+        content: Plugin mechanism
+        url: '/docs/development/plugin-mechanism'
 
 ---
 
