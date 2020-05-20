@@ -25,7 +25,7 @@ page_nav:
 
 ---
 
-ScandiPWA supports frontend plugins, which allow reusing one piece of code throughout a lot of completely different projects. This guide is devoted to key things you should know when creating such extension.
+ScandiPWA v3 (currently not released) supports frontend plugins, which allow reusing one piece of code throughout a lot of completely different projects. This guide is devoted to key things you should know when creating such extension. This is a sneak peek and this functionality is not yet released.
 
 ## Watch an explanation video
 
