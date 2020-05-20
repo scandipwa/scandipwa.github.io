@@ -5,8 +5,8 @@ keywords:
 comments: false
 
 # Hero section
-title: Creating the frontend extension
-description: Implement easily-pluggable extensions for frontend.
+title: Creating a frontend extension
+description: Implement pluggable extension for frontend.
 
 # Micro navigation
 micro_nav:
@@ -17,63 +17,71 @@ micro_nav:
 # Page navigation
 page_nav:
     prev:
-        content: Base template
-        url: '/docs/cookbook/base-template'
+        content: Connect to GraphQL resolver
+        url: '/docs/cookbook/connecting-resolver'
     next:
-        content: Creating resolver
-        url: '/docs/cookbook/creating-resolver'
+        content: Implementing granular cache
+        url: '/docs/cookbook/caching'
 
 ---
 
-ScandiPWA supports frontend extensions, which allow plugging into ScandiPWA functionality very similarly to Magento plugins. This guide is devoted to key things you should know when creating such extension.
+ScandiPWA supports frontend extensions, which allow plugging into ScandiPWA functionality and reusing one piece of code throughout a lot of completely different projects. This guide is devoted to key things you should know when creating such extension.
 
-## Watch the tutorial
+## Watch an explanation video
 
-TODO
+<div class="video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/9f6rpIrlNMk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
-## General rule
+## Extension's file structure
 
-Start with understanding how do you wish to change ScandiPWA logic. Find the places which you'd change with your custom logic. Let's say you have the following class and you want to change it's behavior.
+ScandiPWA extension is M2 composer package with one extra directory - `scandipwa`. Inside of it ScandiPWA frontend-related functionality is stored. Any other M2 related folders with backend-related functionality can be stored in such package. You see `etc` and `Model` in this example, but these are not the only possible ones.
 
-```javascript
-export class SampleClass extends ExtensibleClass {
-    simpleFunction(x) {
-        console.log(`I am a simple function! And this is my argument: ${x}!`);
-    }
-
-    arrowFunction = (x) => {
-        console.log(`I am an arrow function! My argument is ${x}!`);
-    }
-
-    property = {
-        something: "Something",
-        nothing: "Nothing"
-    };
-
-    showProperty() {
-        console.log(property);
-    }
-}
-
-export default middleware(SampleClass, 'SomeNamespace/SampleClass');
+```bash
+📦my-awesome-extension
+ ┣ 📂src
+ ┃ ┣ 📂etc
+ ┃ ┃ ┗ # ...
+ ┃ ┣ 📂Model
+ ┃ ┃ ┗ # ...
+ ┃ ┗ 📂scandipwa # Frontend-related functionality
+ ┃   ┣ 📂 app    # Anything your extension needs on FE
+ ┃   ┃ ┣ 📂component
+ ┃   ┃ ┣ 📂query
+ ┃   ┃ ┣ 📂route
+ ┃   ┃ ┣ 📂store
+ ┃   ┃ ┣ 📂util
+ ┃   ┃ ┗ 📂app
+ ┃   ┗ 📂 plugin # Plugging logic declarations
+ ┃     ┗ 📜<SourceComponentName>.plugin.js
+ ┗ 📜composer.json
 ```
 
-1. The thing that needs to be done first of all is creation of a composer package. Inside of it, in `src/scandipwa/plugin` you create `Awesome.plugin.js` file. Multiple can be created if functionally and logically separate parts of ScandiPWA need to be plugged into.
+## A step-by-step algorithm of creating a simple extension
 
-2. In there, you should create a class `AwesomePlugin`, it's members are meant to wrap around the `SampleClass` members and change their behavior.
+This document is an addition to the video tutorial above. You are welcome to watch it in order to learn from an example. Start with understanding how you wish to change ScandiPWA logic. Find the places which need modification.
+
+1. Create a `localmodules` directory in the magento root of your application. Then create a composer package there. Inside of it, in `src/scandipwa/plugin`, create `ComponentName.plugin.js` file, where `ComponentName` is name of the component you'd like to modify.
+
+2. In there, you should create a class `ComponentNamePlugin`, its members are meant to wrap around the `SampleClass` members and be ran instead of the original members.
+
 >**Note: It is recommended to stick to the naming convention regarding the arguments of these functions.**
 
-Each member that wraps around a **_function_** has the following arguments.
+Each member which wraps around a **_function_** has the following arguments.
 - `args` is an array of original arguments that are passed to the function this one is wrapped around.
+
 - `callback` is function that calls the next plugin if there is one, or the original method, when all plugins defined for this method are applied.
+
 - `instance` references the object you are plugging into.
 
-Each member that is meant to change a **_property_**  has the following arguments:
-- `originalMember` is the original member you are plugging into.
+Each member which wraps around a **_property_**  has the following arguments:
+
+- `originalMember` is the member you are plugging into.
+
 - `instance` references the object you are plugging into.
 
 ```javascript
-    // This wraps around function, logs the arguments and adds one to the first argument
+    // This wraps around the member function, logs the arguments and adds one to the first argument
     aroundFunction(args, callback, instance) {
         console.log(args); // [ ...arguments ]
         args[0] += 1;
@@ -93,15 +101,23 @@ Each member that is meant to change a **_property_**  has the following argument
     }
 ```
 
-3. Create the configuration in your `.plugin.js` file. This object must be a default export. The following things are defined in this configuration:
-- Which namespace are you plugging into
-- Are you plugging into a _class_ or an _instance_?
-    - _'Class construct'_ plugins change classes in the moment of their instantiation. This enables changing class **static members**, which are not available neither on instances nor on prototypes. Also this is an approach to change **properties**, which are never available on prototypes, e.g. state in a way it's defined throughout the ScandiPWA (`state = { ... }`).
-    - _'Instance get'_ plugins intercept calls to instances' members. These plugins are used to change the behavior of regular functions, available on the instance.
-- Which class member are you plugging in. Types of members adviced for each plugin type are described above.
-- Position, in which this plugin will be called. There may be multiple plugins for a single member, the closer the position to 0 - the sooner this plugin will be called.
+3. Create the configuration in the bottom of `.plugin.js` file. This object must be a default export. The following things are defined in this configuration:
 
-> **Note: you can create class members that do not exist in the original classes and they will be called, e.g. `componentDidUpdate`**
+- Which namespace to modify
+
+- Modify _class_ or _instance_
+
+  - _'Instance get'_ plugins intercept calls to instance members. These plugins are used to change the behavior of functions, which available on the instance.
+
+  - _'Class Get'_ plugins enable changing class **static members**.
+
+  - _'Class Construct'_ is an approach to change **properties**, which are not available on prototypes, e.g. state in a way it's defined throughout the ScandiPWA (`state = { ... };`).
+
+- Name of the member to modify
+
+- Position, in which this plugin will be called. There may be multiple plugins for a single member if there are several extensions active in the application. The closer the position to 0 - the sooner it is called.
+
+> **Note: you can create class members that do not exist in the original classes and they will be called as you'd expect writing them directly in the class, e.g. `componentDidUpdate`. Use _instance get_ plugins to do that in order not to overwrite any other plugin logic.**
 
 Configuration must follow this format:
 
@@ -112,8 +128,8 @@ const config = {
             'get': {
                 'methodName': [
                     {
-                        position: X,
-                        implementation: pluginInstance.memberName
+                        position: A, // number
+                        implementation: B // function
                     }
                 ]
             }
@@ -122,8 +138,16 @@ const config = {
             'construct': {
                 'propertyName': [
                     {
-                        position: X,
-                        implementation: pluginInstance.memberName
+                        position: E,
+                        implementation: F
+                    }
+                ]
+            },
+            'get': {
+                'staticMemberName': [
+                    {
+                        position: C,
+                        implementation: D
                     }
                 ]
             }
@@ -132,7 +156,7 @@ const config = {
 }
 ```
 
-4. Activate your plugin. In the FE root of your theme, there is a file called **TODO**. It is responsible for theme's configuration. Active plugins should be defined there. The format for the extensions' block of this file is the following:
+4. Activate your plugin. In the FE root of your theme, there is a file called `extensions.json`. It is responsible for theme's configuration. Active plugins should be defined there. The format for the extensions' block of this file is the following:
 ```javascript
 {
     "extensions": {
@@ -143,5 +167,4 @@ const config = {
         ]
     }
 }
-
 ```

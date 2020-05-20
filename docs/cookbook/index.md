@@ -26,6 +26,10 @@ grid_navigation:
       excerpt: Learn how to connect GraphQL resolver to the front-end and make the data request.
       cta: Read more
       url: '/docs/cookbook/connecting-resolver'
+    - title: Implementing an extension
+      excerpt: Learn how to implement a pluggable frontend extension!
+      cta: Read more
+      url: '/docs/cookbook/frontend-extensions'
     - title: Implementing granular cache
       excerpt: Learn how to implement cache identities, for granular data caching!
       cta: Read more
