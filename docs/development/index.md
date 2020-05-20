@@ -33,7 +33,7 @@ grid_navigation:
     - title: Plugin mechanism
       excerpt: Learn how to implement a frontend plugin!
       cta: Read more
-      url: '/docs/development/frontend-plugins'
+      url: '/docs/development/plugin-mechanism'
     - title: Debugging guide
       excerpt: Being able to find out what is going on, why, and where is crucial for an effective project delivery.
       cta: Read more
