@@ -43,13 +43,13 @@ type Mutation {
     sendMessage(input: SendMessageInput!): SendMessageOutput
 }
 
-input SendRmaMessageInput {
+input SendMessageInput {
     chat_id: String!
     message_text: String!
     message_image_id: String
 }
 
-type SendRmaMessageOutput {
+type SendMessageOutput {
     success: Boolean
     sent_message_info: SentMessageInformation
 }
