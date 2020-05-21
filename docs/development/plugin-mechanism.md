@@ -63,7 +63,7 @@ This document is an addition to the video tutorial above. You are welcome to wat
 
 1. Create a `localmodules` directory in the magento root of your application. Then create a composer package there. Inside of it, in `src/scandipwa/plugin`, create `ComponentName.plugin.js` file, where `ComponentName` is name of the component you'd like to modify.
 
-2. In there, you should create a class `ComponentNamePlugin`, its members are meant to wrap around the `SampleClass` members and be ran instead of the original members.
+2. In there, you should create a class `ComponentNamePlugin`, its members are meant to wrap around the `SampleClass` members and be ran instead of the original members. It is essential that wrapper members must be arrow functions, otherwise your plugin's context will not be available from inside of them.
 
 >**Note: It is recommended to stick to the naming convention regarding the arguments of these functions.**
 
@@ -82,7 +82,9 @@ Each member which wraps around a **_property_**  has the following arguments:
 
 ```javascript
     // This wraps around the member function, logs the arguments and adds one to the first argument
-    aroundFunction(args, callback, instance) {
+    // It is essential that wrapper function is an arrow function!
+    // Otherwise other member functions will not be available from it.
+    aroundFunction = (args, callback, instance) => {
         console.log(args); // [ ...arguments ]
         args[0] += 1;
 
@@ -92,7 +94,7 @@ Each member which wraps around a **_property_**  has the following arguments:
     }
 
     // This wraps around a property
-    property(originalMember, instance) {
+    property = (originalMember, instance) => {
         return {
             ...originalMember,
             // And adds this new value to it
