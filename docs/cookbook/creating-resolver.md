@@ -91,12 +91,12 @@ class <RESOLVER_NAME> implements ResolverInterface
 }
 ```
 
-?> **Note**: Do not write the complex business logic inside, just refer the original Models.
+> **Note**: Do not write the complex business logic inside, just refer the original Models.
 
 ## Advanced performance optimization
 
 The Magento, by default, has the **Batch resolver interface** - read more about these [here](https://devdocs.magento.com/guides/v2.3/graphql/develop/resolvers.html#batchresolverinterface). We are not utilizing them, we started long before they appeared. This is why we now have the [performance module](https://github.com/scandipwa/performance).
 
-?> **Note**: We have not dug deep into the new Magento approach to the GraphQL performance issues (Batch resolver interface).
+> **Note**: We have not dug deep into the new Magento approach to the GraphQL performance issues (Batch resolver interface).
 
 Our solution (the performance package) was tested under the 500 RPS (Request Per Second) no cache load. The average response time for category page of 24 products - 0.5s. We can have not validated the performance of Magento resolvers after the `2.3.4`. On `2.3.3` it was not that great.

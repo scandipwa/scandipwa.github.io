@@ -32,3 +32,9 @@ This repository contains docs of ScandiPWA. These are now docs, old can be found
     bundle exec jekyll serve
     ```
 
+## Update search indexes
+
+
+    ```bash
+    ALGOLIA_API_KEY='<ADMIN_API_KEY>' bundle exec jekyll algolia
+    ```

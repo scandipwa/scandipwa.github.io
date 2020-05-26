@@ -2,6 +2,11 @@ url: "https://docs.scandipwa.com"
 
 plugins:
   - jekyll-sitemap
+  - jekyll-algolia
+
+algolia:
+  application_id: FVGR8SSYN8
+  index_name: dev_docs
 
 # Theme settings
 doks:
