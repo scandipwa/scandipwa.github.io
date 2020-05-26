@@ -47,6 +47,26 @@
             border: 2px solid rgba($color-dark-blue, .2);
             padding: 10px 10px 10px 45px;
         }
+
+        &--reset {
+            top: calc(50% - 16px/2);
+            right: 16px;
+
+            svg {
+                width: 15px;
+                height: 15px;
+            }
+        }
+
+        &--magnifier {
+            top: calc(50% - 20px/2);
+            left: 15px;
+
+            svg {
+                height: 20px;
+                width: 20px;
+            }
+        }
     }
 
     .ais-Highlight {
