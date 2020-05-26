@@ -58,7 +58,9 @@ micro_nav:
 
     > **Note**: steps 5. and 6. are the requirements of `scandipwa/persisted-query` package.
 
-6. Make sure your server is configured to point into `<MAGENTO ROOT>/pub` directory.
+6. Important instance specific configurations:
+
+    - Make sure your server is configured to point into `<MAGENTO ROOT>/pub` directory.
 
 ## It is time to setup!
 
