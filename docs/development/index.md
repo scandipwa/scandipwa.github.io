@@ -38,5 +38,9 @@ grid_navigation:
       excerpt: Being able to find out what is going on, why, and where is crucial for an effective project delivery.
       cta: Read more
       url: '/docs/development/debugging'
+    - title: Coding Standard
+      excerpt: Learn BEM, coding-style & more!
+      cta: Read more
+      url: '/docs/development/coding-standard'
 
 ---
