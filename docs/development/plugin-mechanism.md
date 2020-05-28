@@ -109,11 +109,13 @@ Each member which wraps around a **_property_**  has the following arguments:
 
 - Modify _class_ or _instance_
 
-  - _'Instance get'_ plugins intercept calls to instance members. These plugins are used to change the behavior of functions, which available on the instance.
+  - _'instance get'_ plugins intercept calls to instance members. These plugins are used to change the behavior of functions, which available on the instance.
 
-  - _'Class Get'_ plugins enable changing class **static members**.
+  - _'class get'_ plugins enable changing class **static members**.
 
-  - _'Class Construct'_ is an approach to change **properties**, which are not available on prototypes, e.g. state in a way it's defined throughout the ScandiPWA (`state = { ... };`).
+  - _'class construct'_ is an approach to change **properties**, which are not available on prototypes, e.g. state in a way it's defined throughout the ScandiPWA (`state = { ... };`).
+
+  - _'function apply'_ is an approach to change **functions** which are not class members, e.g. `mapStateToProps` or `mapDispatchToProps`.
 
 - Name of the member to modify
 
@@ -140,33 +142,63 @@ const config = {
             'construct': {
                 'propertyName': [
                     {
-                        position: E,
-                        implementation: F
+                        position: C,
+                        implementation: D
                     }
                 ]
             },
             'get': {
                 'staticMemberName': [
                     {
-                        position: C,
-                        implementation: D
+                        position: E,
+                        implementation: F
                     }
                 ]
+            }
+        },
+        'function': {
+            'apply': {
+                {
+                    position: G,
+                    implementation: H
+                }
             }
         }
     }
 }
 ```
 
-4. Activate your plugin. In the FE root of your theme, there is a file called `extensions.json`. It is responsible for theme's configuration. Active plugins should be defined there. The format for the extensions' block of this file is the following:
+4. Activate your plugin. In the FE root of your theme, there is a file called `scandipwa.json`. It is responsible for theme's configuration. Active plugins should be defined there.
+
+Contents:
+
+- `<extension name>`: should be picked by you, it is not related to any functionality, just denotes which plugin files are meant for which extension. Put anything you like here.
+
+- `<path>`: relative path from Magento root to `.plugin.js` file. Not that it's mandatory to have these paths in an array, even if only one is required for the extension.
+
+The format for the 'extensions' block of this file is the following:
 ```javascript
 {
     "extensions": {
-        // Extension name should be picked by you, it can be anything.
-        "ExtensionName": [
-            "path/from/magento/root/to/plugin/file",
-            "path/from/magento/root/to/another/one"
+        "<extension name>": [
+            "<path1>",
+            "<path2>"
         ]
     }
 }
 ```
+
+## Useful information
+
+1. All plugin files can be overriden both in parent and custom theme. To do that you should put a file with the same name in `app/design/frontend/Scandiweb/pwa/src/plugin/<vendor>/<extension>/<path>`, where `<path>` is relative to `scandipwa` folder in project's frontend root. For example, to override file `awesome-extension-provider/paypal-graphql/src/scandipwa/app/component/PayPal/PayPal.component.js` you need to create a file `app/design/frontend/Scandiweb/pwa/src/plugin/awesome-extension-provider/paypal-graphql/app/component/PayPal/PayPal.component.js`. Note that override file's path is reduced and you shouldn't include child directories `src/scandipwa` in it, because everything that is able to be overriden with this approach is located in the extension's frontend root, which is `src/scandipwa`.
+
+2. Referencing extension from the inside of it and from the outside of it can be done with an alias that is generated during the compilation. Alias is `<vendor name>_<extension name>` transformed to PascalCase and references the frontend root of specified extension. E.g. you can import files from `awesome-extension-provider/paypal-graphql` by using the following:
+
+```javascript
+import PayPal from 'AwesomeExtensionProvider_PaypalGraphql/component/PayPal';
+// instead of
+import PayPal from '../../../<some more iterations>/awesome-extension-provider/paypal-graphql/src/scandipwa/app/component/PayPal';
+```
+
+3. ScandiPWA extensibility allows **plugging into plugins**. All classes that your plugin requires should be assigned namespaces by wrapping them into the `middleware` function. The only exception is that plugin class in `.plugin.js` file cannot be plugged into due to configuration builder's limitations. It still can be overriden as described above though.
+
