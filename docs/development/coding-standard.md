@@ -174,6 +174,159 @@ Let's consider following JSX snippet:
 }
 ```
 
-## Coding standard
+## Coding standard: description of ESLint rules
 
-> **Note**: please refer to the [old documentation](https://github.com/scandipwa/docs/blob/master/theme/08-Standard.md) while we are preparing the new guide. It will be based on ESLint rules, we plan on automating the coding standards & styles.
+### `file-structure`
+File structure must comply to the following guidelines:
+
+  * File structure must be flat, meaning that nesting components inside of other components is prohibited.
+
+  * Extending root directory `src` with custom folders is prohibited.
+
+  * File structure regulations imply having files with certain postfixes for certain functionality parts. Allowed postfixes for directories are the following
+
+    * Component and route: `.component` `.container` `.style` `.config` `.unstated`
+
+    * Store: `.action` `.dispatcher` `.reducer`
+
+    * Query: `.query`
+
+    * Style, type: __none__
+
+  * For files which are in their own directories with functionality related only to them (e.g routes, components), names should match the name of the directory these files are in.
+
+
+### __`derived-class-names`__
+Class name must match name of the file it is inside of.
+Expected class names for all the files _other_ than components are `name + prefix` (e.g. class inside of __AddToCart.container__.js file must be called __AddToCartContainer__ and not otherwise).
+
+Examples of **incorrect** code for this rule:
+
+```js
+// in MyComponent.container.js
+class Abc { /** ... */ }
+
+// in Hello.component.js
+class HelloComponent { /** ... */ }
+```
+
+Examples of **correct** code for this rule:
+
+```js
+// in MyComponent.container.js
+class MyComponentContainer { /** ... */ }
+
+// in Hello.component.js
+class Hello { /** ... */ }
+```
+
+### `use-extensible-base`
+All components should be extensible. For class to be extensible it should be derived from extensible base. Replacements of non-extensible bases are the following and should not be imported - these are available in any point of the application.
+
+  * `PureComponent` -> `ExtensiblePureComponent`
+
+  * `Component` -> `ExtensibleComponent`
+
+  * _`no base`_ -> `ExtensibleClass`
+
+
+The `ExtensiblePureComponent`, `ExtensibleComponent` and `ExtensibleClass` requires no import.
+
+Examples of **incorrect** code for this rule:
+
+```js
+import { PureComponent } from 'react';
+class A extends PureComponent { /** ... */ }
+```
+
+Examples of **correct** code for this rule:
+
+```js
+// notice, no import, it is a global variable
+class A extends ExtensiblePureComponent { /** ... */ }
+```
+
+### `only-one-class`
+There should be only one class per file. Multiple classes inside of one file are not allowed.
+
+Examples of **incorrect** code for this rule:
+
+```js
+// A.component.js
+class A {
+    /** ... */
+}
+
+class B {
+    /** ... */
+}
+```
+
+Examples of **correct** code for this rule:
+```js
+// A.component.js
+class A {
+    /** ... */
+}
+```
+
+### `no-non-extensible-components`
+Non-extensible components are not allowed. Use extensible bases instead of regular `Component` or `PureComponent`.
+
+Examples of **incorrect** code for this rule:
+
+```js
+class A extends PureComponent {
+    /** ... */
+}
+```
+
+Examples of **correct** code for this rule:
+```js
+class A extends ExtensiblePureComponent{
+    /** ... */
+}
+```
+
+### `export-level-one`
+Variables and classes if declared on root level must be exported (and not by default!)
+
+Examples of **incorrect** code for this rule:
+
+```js
+const SOME_IMPORTANT_NUMBER = 777;
+
+class A extends ExtensiblePureComponent {
+    /** ... */
+}
+```
+
+Examples of **correct** code for this rule:
+```js
+export const SOME_IMPORTANT_NUMBER = 777;
+
+export class A extends ExtensiblePureComponent{
+    /** ... */
+}
+```
+
+
+### `use-middleware`
+Wrap default export classes in `middleware` function in order to make classes extensible and assign namespaces to them.
+
+Examples of **incorrect** code for this rule:
+
+```js
+// Component/A/A.component.js
+export default A;
+// Route/B/B.container.js
+export default connect(mapStateToProps, mapDispatchToProps)(BContainer)
+```
+
+Examples of **correct** code for this rule:
+```js
+// Component/A/A.component.js
+export default middleware('Component/A/Component', A);
+// Route/B/B.container.js
+export default middleware('Route/B/Container', BContainer);
+```
