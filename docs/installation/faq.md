@@ -170,7 +170,7 @@ COMPOSER_AUTH environment variable is malformed, should be a valid JSON object
 
 Check if the environment variable is set properly, it must be valid JSON object.
 
-This issue is common with AWS ECS setups. If you happened to use one, make sure to set it in the folowing way (without quotes):
+This issue is common with AWS ECS setups. If you happened to use one, make sure to set it in the following way (without quotes):
 
 ```json
 {
@@ -235,11 +235,11 @@ This is common Magento issue. To resolve it, you need to go into Magento 2 admin
 
 ## The `404` on homepage
 
-If the homepage shows `404` - there could be mutiple reasons. Check following configurations:
+If the homepage shows `404` - there could be multiple reasons. Check following configurations:
 
 1. Go to _Stores > Configuration > General > Web > Default Pages > CMS Home Page_ and check if it is set
 
-2. Go to _Content > Pages_ make sure the column `Store View` is not empty for your Home Page CMS page. If it is empty, click on the page, select neccessary stores and click save (the stores might appear selected, igonre it).
+2. Go to _Content > Pages_ make sure the column `Store View` is not empty for your Home Page CMS page. If it is empty, click on the page, select necessary stores and click save (the stores might appear selected, igonre it).
 
 ## The `Operation not permited` (permission issues)
 
@@ -255,7 +255,7 @@ You have a permission issue. To resolve it, run following command on your host m
 sudo chmod -R 777 .
 ```
 
-Why this issue occured?
+Why this issue occurred?
 
 You could have ran some command in the `app` container as `root` user. You must run them from `user`. How?
 
@@ -290,7 +290,7 @@ ERROR: for <CONTAINER NAME> Can not start service ... : listen tcp 0.0.0.0:<PORT
 
 This indicates that one or multiple ports required for the setup are already in use by other processes. Please make sure following ports are not in use: `80, 334, 3307, 1080, 5601`.
 
-See [this instruction](https://appuals.com/how-to-kill-process-on-port/) to find out how to kill processess on specific ports.
+See [this instruction](https://appuals.com/how-to-kill-process-on-port/) to find out how to kill processes on specific ports.
 
 ## Database migration failed
 

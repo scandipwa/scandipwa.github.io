@@ -24,7 +24,7 @@ page_nav:
         url: '/docs/overview/existing-solutions'
 ---
 
-> **Note**: challenges described here are common to any SPA application. The ScandiPWA (and alternative solutions) way of solving those challanges is [described here](./existing_solutions.md).
+> **Note**: challenges described here are common to any SPA application. The ScandiPWA (and alternative solutions) way of solving those challenges is [described here](./existing_solutions.md).
 
 By design Magento front-end can not be separated from the Magneto back-end. This is because it is rendered on the server side, so you need a complete Magento instance to render the HTML for the browser (client).
 
@@ -56,23 +56,23 @@ For the implementation of the hybrid rendering, we need either to completely ove
 
 ## How to communicate with a server?
 
-Previously the standart way of implementing the API was REST. Rest was known for its ease - you define an endpoint, and communicate with it using JSON. On large scale, however, REST is hard to master. With commonly more than 100 enpoints, it was almost impossible to remember. Additionally the data that was returned by the endpoint was often very detailed. Too big payloads required a way to request specific fields only. Multiple solutions arraised and standartization became neccessary. The GraphQL became the new standart.
+Previously the standard way of implementing the API was REST. Rest was known for its ease - you define an endpoint, and communicate with it using JSON. On large scale, however, REST is hard to master. With commonly more than 100 enpoints, it was almost impossible to remember. Additionally the data that was returned by the endpoint was often very detailed. Too big payloads required a way to request specific fields only. Multiple solutions arraised and standartization became necessary. The GraphQL became the new standard.
 
-What was introduced in GraphQL? First, the endpoint count was decreased to 1. The schema concept was added. Now, the developer could ask for schema to understand what information can be recieved from the endpoint. Finally, the "query language" was added in order to specify which exact fields must be returned from the server. The GraphQL however, is slower then REST API. This is becuase it requires a recursive parsing of the requested information and then "asyncronious" resolution.
+What was introduced in GraphQL? First, the endpoint count was decreased to 1. The schema concept was added. Now, the developer could ask for schema to understand what information can be received from the endpoint. Finally, the "query language" was added in order to specify which exact fields must be returned from the server. The GraphQL however, is slower than REST API. This is because it requires a recursive parsing of the requested information and then "asyncronious" resolution.
 
 Some languages like PHP do not support the asyncronious code execution. This makes PHP GraphQL server respond longer then NodeJS server. This means Magento 2 will be responding slower to QraphQL requests than the NodeJS server (assuming calculation has the same complexity). Introduction of additional servers, however, means decreasing data-integrity.
 
 However, if the data-integrity is compromised, the midleware could take care of the GraphQL parsing.
 
-## How to cache API calls efficently?
+## How to cache API calls efficiently?
 
 Using the REST API, there is no issue - the communication happens via GET requests that are very easy to cache by the URL key. The POST requests on the other hand are mostly made for sensitive data communication and by default they cannot be cached.
 
-GraphQL by design is using POST requests to communicate with the server. This complicates the process of caching GraphQL requests. We need a mechanism to transform the POST request into cachable GET request so we could use established tools like Varnish.
+GraphQL by design is using POST requests to communicate with the server. This complicates the process of caching GraphQL requests. We need a mechanism to transform the POST request into cacheable GET request so we could use established tools like Varnish.
 
 In order to achive that, the persisted-query approach can be used. Initially introduced by Appolo, it's main principle is to transform a GraphQL query into a unique identifier and send the GraphQL query variables as the URL parameters. This approach **requires to additional requests**. However, **it saves the bandiwidth**, because the query body is not sent every time. Read more about how persisted-query works [here](https://github.com/scandipwa/persisted-query#usage).
 
-An alternative, less efficent, and less robust approach is to send the stringified JSON of the full GraphQL request to the server. This is how Magento 2 approaches the GraphQL caching implementation by default. Despite the simplicity, it brings the downsides like lower reliabaility - because now **the maximum URL length can be easily exceeded**. Additionally this way of communication is bandwidth heavy - the full query body is sent every time.
+An alternative, less efficient, and less robust approach is to send the stringified JSON of the full GraphQL request to the server. This is how Magento 2 approaches the GraphQL caching implementation by default. Despite the simplicity, it brings the downsides like lower reliabaility - because now **the maximum URL length can be easily exceeded**. Additionally this way of communication is bandwidth heavy - the full query body is sent every time.
 
 Another, more complex way to cache data is to create an additional entity storage server (database). This storage could be later syncronized with any e-commerce BE, like, i.e. Magento 2. This approach is very popular within the backend-agnostic solutions, where the middleware server could be responsible for the database operation. The downsides are the **introduced stack complexity** and **the lack of data-integrity**.
 

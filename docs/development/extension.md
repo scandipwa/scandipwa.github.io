@@ -250,9 +250,9 @@ For styles nothing changes. You create a file under the same name and it gets in
 
 ## Overriding templates (HTML, pHTML)
 
-ScandiPWA has a long-standing bug - the templates are impossibble to override. For some reason, they are always taken from vendor folder, instead of the theme. Becuase of that, in order to change anything inside of the `src/public/index.development.html` or `src/public/index.production.phtml` you must:
+ScandiPWA has a long-standing bug - the templates are impossibble to override. For some reason, they are always taken from vendor folder, instead of the theme. Because of that, in order to change anything inside of the `src/public/index.development.html` or `src/public/index.production.phtml` you must:
 
-1. Rename the files, in exmaple, from `src/public/index.development.html` to `src/public/my-index.development.html`, and from `src/public/index.production.phtml` to `src/public/my-index.production.phtml`.
+1. Rename the files, in example, from `src/public/index.development.html` to `src/public/my-index.development.html`, and from `src/public/index.production.phtml` to `src/public/my-index.production.phtml`.
 
     > **Note**: we renamed from `index` to `my-index`! You can rename to anything else.
 
