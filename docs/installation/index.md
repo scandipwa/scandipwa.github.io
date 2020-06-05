@@ -6,7 +6,7 @@ comments: false
 
 # Hero section
 title: Installation
-description: Difference between usual Magento 2 and ScandiPWA
+description: ScandiPWA can be installed on various environments using the following approaches
 
 # Micro navigation
 micro_nav:
