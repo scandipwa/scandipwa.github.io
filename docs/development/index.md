@@ -42,5 +42,9 @@ grid_navigation:
       excerpt: Learn BEM, coding-style & more!
       cta: Read more
       url: '/docs/development/coding-standard'
+    - title: Parent theme
+      excerpt: Create projects on top of your custom theme instead of the standard solution!
+      cta: Read more
+      url: '/docs/development/parent-theme'
 
 ---

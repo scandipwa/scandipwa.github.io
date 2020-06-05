@@ -19,6 +19,9 @@ page_nav:
     prev:
         content: Debugging
         url: '/docs/development/debugging'
+    next:
+        content: Parent theme
+        url: '/docs/development/parent-theme'
 
 ---
 

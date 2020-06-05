@@ -19,6 +19,9 @@ page_nav:
     prev:
         content: Plugin mechanism
         url: '/docs/development/plugin-mechanism'
+    next:
+        content: Coding Standard
+        url: '/docs/development/coding-standard'
 
 ---
 

@@ -6,7 +6,7 @@ comments: false
 
 # Hero section
 title: Creating a ScandiPWA plugin
-description: Implement a plugin with frontend functionality for ScandiPWA.
+description: Definitive guide for ScandiPWA plugin functionality.
 
 # Micro navigation
 micro_nav:
@@ -25,12 +25,19 @@ page_nav:
 
 ---
 
-ScandiPWA v3 (currently not released) supports frontend plugins, which allow reusing one piece of code throughout a lot of completely different projects. This guide is devoted to key things you should know when creating such extension. This is a sneak peek and this functionality is not yet released.
+ScandiPWA v3 (currently in beta) supports frontend plugins, which allow reusing one piece of code throughout a lot of completely different projects. This guide is devoted to explaining all the functionality related to plugins.
+
 
 ## Watch an explanation video
 
+### Implementing an extension from scratch
 <div class="video">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/9f6rpIrlNMk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+### Implementing an extension from customisation
+<div class="video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/N2TJJbSDTbM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 ## Extension's file structure
@@ -188,17 +195,69 @@ The format for the 'extensions' block of this file is the following:
 }
 ```
 
-## Useful information
+## Overriding extensions
 
-1. All plugin files can be overriden both in parent and custom theme. To do that you should put a file with the same name in `app/design/frontend/Scandiweb/pwa/src/plugin/<vendor>/<extension>/<path>`, where `<path>` is relative to `scandipwa` folder in project's frontend root. For example, to override file `awesome-extension-provider/paypal-graphql/src/scandipwa/app/component/PayPal/PayPal.component.js` you need to create a file `app/design/frontend/Scandiweb/pwa/src/plugin/awesome-extension-provider/paypal-graphql/app/component/PayPal/PayPal.component.js`. Note that override file's path is reduced and you shouldn't include child directories `src/scandipwa` in it, because everything that is able to be overriden with this approach is located in the extension's frontend root, which is `src/scandipwa`.
+### Watch an explanation video
 
-2. Referencing extension from the inside of it and from the outside of it can be done with an alias that is generated during the compilation. Alias is `<vendor name>_<extension name>` transformed to PascalCase and references the frontend root of specified extension. E.g. you can import files from `awesome-extension-provider/paypal-graphql` by using the following:
+<div class="video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/vG5eZcvCq48" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+### Approach 1: Fallback Plugin
+
+1. Creating a new file
+
+Imagine you have to override the following file:
+
+```bash
+.../awesome-extension-provider/paypal-graphql/src/scandipwa/app/component/PayPal/PayPal.component.js
+```
+
+In order to acomplish that all you need to do is to create a file with the following path:
+
+```bash
+.../pwa/src/plugin/awesome-extension-provider/paypal-graphql/app/component/PayPal/PayPal.component.js
+```
+
+The pattern is: for file with the following path
+
+```bash
+.../<vendor>/<extension>/src/scandipwa/<PATH>
+```
+
+You need to create a file with the following path, that is going to be taken in place of original file. Notice that to reduce the path you don't need to reference src/scandipwa folders each and every time. They'd always be there, that's why we removed them from the modified path to simplify file structure.
+
+```bash
+.../pwa/src/plugin/<vendor>/<extension>/<PATH>
+```
+
+2. Retrieving the original functionality
+
+You can import anything exported from the original plugin file to extend it, just as when extending source theme files. To do that you can reference the original file by relative path, but that is a bit too long. To make it simpler, a different approach has been implemented. Now you can import original functionality using a generated alias, that depends on directories' names and consists of vendor name and extension name, written in PascalCase and separated by underscore.
+
+So if you need to import something from this file:
+
+```bash
+.../awesome-extension-provider/paypal-graphql/src/scandipwa/app/component/PayPal/index.js
+```
+
+You can do it by referencing the original file by following alias, anywhere throughout the application:
 
 ```javascript
-import PayPal from 'AwesomeExtensionProvider_PaypalGraphql/component/PayPal';
+import PayPal from 'AwesomeExtensionProvider_PaypalGraphql/app/component/PayPal';
 // instead of
 import PayPal from '../../../<some more iterations>/awesome-extension-provider/paypal-graphql/src/scandipwa/app/component/PayPal';
 ```
 
-3. ScandiPWA extensibility allows **plugging into plugins**. All classes that your plugin requires should be assigned namespaces by wrapping them into the `middleware` function. The only exception is that plugin class in `.plugin.js` file cannot be plugged into due to configuration builder's limitations. It still can be overriden as described above though.
+Notice how `src/scandipwa` part disappeared in here just as in the first approach.
 
+> **Note: remember that these aliases are case-sensitive. PayPalGraphQL instead of PaypalGraphql will throw errors**
+
+3. Extending
+
+See more on extending functionality with such approach (using ScandiPWA Fallback plugin) in the [extension guide](/docs/development/extension/). All extensions-related specifics have been described in this article, follow them when using approaches described in video and text guides following the link.
+
+
+### Approach 2: Plugins!
+
+ScandiPWA allows **plugging into plugins**. All classes that your plugin requires should be assigned namespaces by wrapping them into the `middleware` function. The only exception is that plugin class in `.plugin.js` file cannot be plugged into due to configuration builder's limitations. It still can be overriden as described above though.
