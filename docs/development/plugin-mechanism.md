@@ -44,6 +44,10 @@ ScandiPWA v3 (currently in beta) supports frontend plugins, which allow reusing 
 
 ScandiPWA extension is M2 composer package with one extra directory - `scandipwa`. Inside of it ScandiPWA frontend-related functionality is stored. Any other M2 related folders with backend-related functionality can be stored in such package. You see `etc` and `Model` in this example, but these are not the only possible ones.
 
+All directories inside of `scandipwa` are optional, nevertheless following the provided structure is mandatory. You see `app` and `sw` subdirectories in it, these folders' structure is the same as you see in `vendor/scandipwa/source/src/(app|sw)` and they have the same meaning: inside of them are all parts that your extension requires: extra components, queries, routes etc.
+
+`Plugin` directory contains plugin definitions: which functionality parts are you plugging into and how you want to change their behaviour. More about that below.
+
 ```bash
 📦my-awesome-extension
  ┣ 📂src
@@ -51,16 +55,20 @@ ScandiPWA extension is M2 composer package with one extra directory - `scandipwa
  ┃ ┃ ┗ # ...
  ┃ ┣ 📂Model
  ┃ ┃ ┗ # ...
- ┃ ┗ 📂scandipwa # Frontend-related functionality
- ┃   ┣ 📂 app    # Anything your extension needs on FE
+ ┃ ┗ 📂scandipwa  # Frontend-related functionality
+ ┃   ┣ 📂 app     # Application logic
  ┃   ┃ ┣ 📂component
  ┃   ┃ ┣ 📂query
  ┃   ┃ ┣ 📂route
  ┃   ┃ ┣ 📂store
  ┃   ┃ ┣ 📂util
- ┃   ┃ ┗ 📂app
- ┃   ┗ 📂 plugin # Plugging logic declarations
- ┃     ┗ 📜<SourceComponentName>.plugin.js
+ ┃   ┃ ┗ 📂plugin # Plugging logic declarations
+ ┃   ┃   ┗ 📜<SourceComponentName>.plugin.js
+ ┃   ┗ 📂 sw      # Service Worker
+ ┃     ┣ 📂handler
+ ┃     ┣ 📂util
+ ┃     ┗ 📂plugin # Plugging logic declarations
+ ┃       ┗ 📜<SourceServiceWorkerFileName>.plugin.js
  ┗ 📜composer.json
 ```
 
@@ -114,61 +122,57 @@ Each member which wraps around a **_property_**  has the following arguments:
 
 - Which namespace to modify
 
-- Modify _class_ or _instance_
+- How what exactly in the namespace would you like to modify
 
-  - _'instance get'_ plugins intercept calls to instance members. These plugins are used to change the behavior of functions, which available on the instance.
+  - _'member-function'_ plugins intercept calls to instance members. These plugins are used to change the behavior of member functions, which are called on instance.
 
-  - _'class get'_ plugins enable changing class **static members**.
+  - _'member-property'_ is an approach to change **properties**, which are not available on prototypes, e.g. state in a way it's defined throughout the ScandiPWA (`state = { ... };`).
 
-  - _'class construct'_ is an approach to change **properties**, which are not available on prototypes, e.g. state in a way it's defined throughout the ScandiPWA (`state = { ... };`).
+  - _'static-member'_ plugins enable changing classes' **static members**.
 
-  - _'function apply'_ is an approach to change **functions** which are not class members, e.g. `mapStateToProps` or `mapDispatchToProps`.
+  - _'function'_ is an approach to change **functions** which are not class members, e.g. `mapStateToProps` or `mapDispatchToProps`.
 
 - Name of the member to modify
 
-- Position, in which this plugin will be called. There may be multiple plugins for a single member if there are several extensions active in the application. The closer the position to 0 - the sooner it is called.
+- A position, in which this plugin will be called. There may be multiple plugins for a single member if there are several extensions active in the application. The closer the position to 0 - the sooner it is called. The higher a position - the later. Non-unique.
 
-> **Note: you can create class members that do not exist in the original classes and they will be called as you'd expect writing them directly in the class, e.g. `componentDidUpdate`. Use _instance get_ plugins to do that in order not to overwrite any other plugin logic.**
+> **Note: you can create class members that do not exist in the original classes and they will be called as you'd expect writing them directly in the class, e.g. `componentDidUpdate`. Use _member-function_ plugins to do that!**
 
 Configuration must follow this format:
 
 ```javascript
 const config = {
     namespace: {
-        'instance': {
-            'get': {
-                'methodName': [
-                    {
-                        position: A, // number
-                        implementation: B // function
-                    }
-                ]
-            }
+        'member-function': {
+            '<name>': [
+                {
+                    position: A, // number
+                    implementation: B // function
+                }
+            ]
         },
-        'class': {
-            'construct': {
-                'propertyName': [
-                    {
-                        position: C,
-                        implementation: D
-                    }
-                ]
-            },
-            'get': {
-                'staticMemberName': [
-                    {
-                        position: E,
-                        implementation: F
-                    }
-                ]
-            }
+        'member-property': {
+            '<name>': [
+                {
+                    position: C,
+                    implementation: D
+                }
+            ]
+        },
+        'static-member': {
+            '<name>': [
+                {
+                    position: E,
+                    implementation: F
+                }
+            ]
         },
         'function': {
-            'apply': {
-                {
-                    position: G,
-                    implementation: H
-                }
+            // Reduced structure for functions
+            // because function is the only member of its namespace
+            {
+                position: G,
+                implementation: H
             }
         }
     }
@@ -186,12 +190,14 @@ Contents:
 The format for the 'extensions' block of this file is the following:
 ```javascript
 {
+    // ...
     "extensions": {
         "<extension name>": [
             "<path1>",
             "<path2>"
         ]
     }
+    // ...
 }
 ```
 
