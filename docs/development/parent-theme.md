@@ -28,9 +28,15 @@ ScandiPWA v3 (currently in beta) supports implementing parent themes, which allo
 
 1. Implement your custom theme, you can refer to [this guide](/docs/development/extension/).
 
-2. Create a parent theme directory or use the default `app/design/frontend/Scandiweb/pwa_parent`.
+2. Create a parent theme directory: `app/design/frontend/<vendor>/<themename>` or use the default `app/design/frontend/Scandiweb/pwa_parent`.
 
-3. Reference that directory in the `scandipwa.json` file in the root of your project (`parentRoot` field).
+3. Reference that directory in the `scandipwa.json` file in the root of your project, field `parentRoot`. The path should be relative to `app/design/frontend` directory.
+
+```javascript
+{
+    "parentRoot": "<vendor>/<themename>"
+}
+```
 
 4. Move your custom theme's contents there (`mv -r pwa/* pwa_parent/*`) and then erase the `pwa` directory.
 
