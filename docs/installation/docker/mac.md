@@ -134,8 +134,6 @@ micro_nav:
         make cert
         ```
 
-        > **Note**: you will be asked to type in the password 6 times. **This is NOT your host machine password**, this is a **NEW** password for your certificate. This password must be at least 6 characters long.
-
     2. Add certificate to the list of trusted ones. Add this certificate `<PATH TO PROJECT ROOT>/opt/cert/scandipwa-ca.pem` to Key Chain. See [this instruction](https://tosbourn.com/getting-os-x-to-trust-self-signed-ssl-certificates/) for more details.
 
     3. Reload the Google Chrome. Sometimes, the Google Chrome caches the old-certificates. Make to completely exit chrome, before opening it back. Sometimes, the "invalid certificate" issues only disappears after the full host machine reload.
