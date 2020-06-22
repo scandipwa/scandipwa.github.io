@@ -116,6 +116,18 @@ Each member which wraps around a **_property_**  has the following arguments:
             someAddedValue: 'new value!'
         }
     }
+
+    classWrapper = (Class) => {
+        // Return the original class intact
+        return Class;
+
+        // Return the original class wrapped into HOC or something else
+        return withRouter(Class);
+        return connect(...)(...);
+
+        // Replace the original class with something else
+        return OtherClass;
+    }
 ```
 
 3. Create the configuration in the bottom of `.plugin.js` file. This object must be a default export. The following things are defined in this configuration:
@@ -124,7 +136,7 @@ Each member which wraps around a **_property_**  has the following arguments:
 
 - How what exactly in the namespace would you like to modify
 
-  - _'member-function'_ plugins intercept calls to instance members. These plugins are used to change the behavior of member functions, which are called on instance.
+  - _'member-function'_ plugins intercept calls to **instance members**. These plugins are used to change the behavior of member functions, which are called on instance.
 
   - _'member-property'_ is an approach to change **properties**, which are not available on prototypes, e.g. state in a way it's defined throughout the ScandiPWA (`state = { ... };`).
 
@@ -132,13 +144,15 @@ Each member which wraps around a **_property_**  has the following arguments:
 
   - _'function'_ is an approach to change **functions** which are not class members, e.g. `mapStateToProps` or `mapDispatchToProps`.
 
-- Name of the member to modify
+  - _'class'_ is an approach to modify **classes**. These plugins are able to modify the class, wrapping it into HOC or, in extreme cases, replacing it with other class. The second approach is not recommended because it is not well-compatible with potential other plugins wrapping around members of the same namespaces.
 
-- A position, in which this plugin will be called. There may be multiple plugins for a single member if there are several extensions active in the application. The closer the position to 0 - the sooner it is called. The higher a position - the later. Non-unique.
+- Name of the member to modify (for everything apart of 'function' and 'class' plugins)
 
-> **Note: you can create class members that do not exist in the original classes and they will be called as you'd expect writing them directly in the class, e.g. `componentDidUpdate`. Use _member-function_ plugins to do that!**
+- Optional: a position, in which this plugin will be called. There may be multiple plugins for a single member if there are several extensions active in the application. The closer the position to 0 - the sooner it is called. The higher a position - the later. Non-unique.
 
-Configuration must follow this format:
+> **Note: you can create class members that do not exist in the original classes and they will be called as you'd expect writing them directly in the class**
+
+Configuration should follow this format:
 
 ```javascript
 const config = {
@@ -167,14 +181,48 @@ const config = {
                 }
             ]
         },
-        'function': {
+        'function': [
             // Reduced structure for functions
             // because function is the only member of its namespace
             {
                 position: G,
                 implementation: H
+            },
+            {
+                position: I,
+                implementation: J
             }
-        }
+        ]
+    }
+}
+```
+
+If the position at which plugin should be wrapped around the initial piece of functionality is not important, it can be omitted by using the concise configuration syntax. If a function is provided instead of an object.
+
+The example below demonstrates multiple syntax opportunities for writing a configuration part. It is equivalent to the one above.
+
+```javascript
+const config = {
+    namespace: {
+        'member-function': {
+            '<name>': B
+        },
+        'member-property': {
+            '<name>': [
+                {
+                    implementation: D
+                }
+            ]
+        },
+        'static-member': {
+            '<name>': [
+                {
+                    position: E,
+                    implementation: F
+                }
+            ]
+        },
+        'function': [ I, J ]
     }
 }
 ```
@@ -201,69 +249,6 @@ The format for the 'extensions' block of this file is the following:
 }
 ```
 
-## Overriding extensions
+## Plugins for plugins!
 
-### Watch an explanation video
-
-<div class="video">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/vG5eZcvCq48" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
-### Approach 1: Fallback Plugin
-
-1. Creating a new file
-
-Imagine you have to override the following file:
-
-```bash
-.../awesome-extension-provider/paypal-graphql/src/scandipwa/app/component/PayPal/PayPal.component.js
-```
-
-In order to acomplish that all you need to do is to create a file with the following path:
-
-```bash
-.../pwa/src/plugin/awesome-extension-provider/paypal-graphql/app/component/PayPal/PayPal.component.js
-```
-
-The pattern is: for file with the following path
-
-```bash
-.../<vendor>/<extension>/src/scandipwa/<PATH>
-```
-
-You need to create a file with the following path, that is going to be taken in place of original file. Notice that to reduce the path you don't need to reference src/scandipwa folders each and every time. They'd always be there, that's why we removed them from the modified path to simplify file structure.
-
-```bash
-.../pwa/src/plugin/<vendor>/<extension>/<PATH>
-```
-
-2. Retrieving the original functionality
-
-You can import anything exported from the original plugin file to extend it, just as when extending source theme files. To do that you can reference the original file by relative path, but that is a bit too long. To make it simpler, a different approach has been implemented. Now you can import original functionality using a generated alias, that depends on directories' names and consists of vendor name and extension name, written in PascalCase and separated by underscore.
-
-So if you need to import something from this file:
-
-```bash
-.../awesome-extension-provider/paypal-graphql/src/scandipwa/app/component/PayPal/index.js
-```
-
-You can do it by referencing the original file by following alias, anywhere throughout the application:
-
-```javascript
-import PayPal from 'AwesomeExtensionProvider_PaypalGraphql/app/component/PayPal';
-// instead of
-import PayPal from '../../../<some more iterations>/awesome-extension-provider/paypal-graphql/src/scandipwa/app/component/PayPal';
-```
-
-Notice how `src/scandipwa` part disappeared in here just as in the first approach.
-
-> **Note: remember that these aliases are case-sensitive. PayPalGraphQL instead of PaypalGraphql will throw errors**
-
-3. Extending
-
-See more on extending functionality with such approach (using ScandiPWA Fallback plugin) in the [extension guide](/docs/development/extension/). All extensions-related specifics have been described in this article, follow them when using approaches described in video and text guides following the link.
-
-
-### Approach 2: Plugins!
-
-ScandiPWA allows **plugging into plugins**. All classes that your plugin requires should be assigned namespaces by wrapping them into the `middleware` function. The only exception is that plugin class in `.plugin.js` file cannot be plugged into due to configuration builder's limitations. It still can be overriden as described above though.
+ScandiPWA allows **plugging into plugins**. All classes that your plugin requires should be assigned namespaces by wrapping them into the `middleware` function. The only exception is that plugin class in `.plugin.js` file cannot be plugged into due to configuration builder's limitations. It still can be overriden as described in the extension guide though.

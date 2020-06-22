@@ -370,6 +370,68 @@ const NavigationReducer = (state = initialState, action) => {
 export default NavigationReducer;
 ```
 
+## Extending plugins
+
+### Watch an explanation video
+
+<div class="video">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/vG5eZcvCq48" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+### Approach 1: Fallback Plugin
+
+1. Creating a new file
+
+Imagine you have to override the following file:
+
+```bash
+.../awesome-extension-provider/paypal-graphql/src/scandipwa/app/component/PayPal/PayPal.component.js
+```
+
+In order to acomplish that all you need to do is to create a file with the following path:
+
+```bash
+.../pwa/src/plugin/awesome-extension-provider/paypal-graphql/app/component/PayPal/PayPal.component.js
+```
+
+The pattern is: for file with the following path
+
+```bash
+.../<vendor>/<extension>/src/scandipwa/<PATH>
+```
+
+You need to create a file with the following path, that is going to be taken in place of original file. Notice that to reduce the path you don't need to reference src/scandipwa folders each and every time. They'd always be there, that's why we removed them from the modified path to simplify file structure.
+
+```bash
+.../pwa/src/plugin/<vendor>/<extension>/<PATH>
+```
+
+2. Retrieving the original functionality
+
+You can import anything exported from the original plugin file to extend it, just as when extending source theme files. To do that you can reference the original file by relative path, but that is a bit too long. To make it simpler, a different approach has been implemented. Now you can import original functionality using a generated alias, that depends on directories' names and consists of vendor name and extension name, written in PascalCase and separated by underscore.
+
+So if you need to import something from this file:
+
+```bash
+.../awesome-extension-provider/paypal-graphql/src/scandipwa/app/component/PayPal/index.js
+```
+
+You can do it by referencing the original file by following alias, anywhere throughout the application:
+
+```javascript
+import PayPal from 'AwesomeExtensionProvider_PaypalGraphql/app/component/PayPal';
+// instead of
+import PayPal from '../../../<some more iterations>/awesome-extension-provider/paypal-graphql/src/scandipwa/app/component/PayPal';
+```
+
+Notice how `src/scandipwa` part disappeared in here just as in the first approach.
+
+> **Note: remember that these aliases are case-sensitive. PayPalGraphQL instead of PaypalGraphql will throw errors**
+
+3. Extending
+
+See more on extending functionality with such approach (using ScandiPWA Fallback plugin) above. All extensions-related specifics have been described in this article.
+
 ## Need more examples?
 
 Other component extension is similar. Please re-read the step-by-step algorithm, this really helps!
