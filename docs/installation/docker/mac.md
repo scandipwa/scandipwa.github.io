@@ -220,17 +220,21 @@ There are two ways to use the setup: with `frontend` container and without it. T
 
 ## How to access the site?
 
-1. Open your favorite browser, i.e. Google Chrome
+> **Note**: all application configurations, i.e. admin password, admin username, admin URL, application mode and more is located in `.application` file.
 
-2. Regardless of **production** or **development** setup go to [https://scandipwa.local](https://scandipwa.local)
+1. To run any Magento-related command (`composer`, `bin/magento`) use `inapp bash` command on your host machine. Do not attempt to run them on your host machine.
+
+2. Open your favorite browser, i.e. Google Chrome
+
+3. Regardless of **production** or **development** setup go to [https://scandipwa.local](https://scandipwa.local)
 
     1. In **production** the Magento (`app` container) is fully responsible for what you see in browser
 
     2. In **development** the webpack-dev-server (`frontend` container) is responsible for frontend, while `/media`, `/graphql`, `/admin` URLs are still coming from Magento.
 
-3. To access the Maildev, go to [http://scandipwa.local:1080/maildev](http://scandipwa.local:1080/maildev)
+4. To access the Maildev, go to [http://scandipwa.local:1080/maildev](http://scandipwa.local:1080/maildev)
 
-4. To access the Kibana, go to [http://scandipwa.local:5601](http://scandipwa.local:5601)
+5. To access the Kibana, go to [http://scandipwa.local:5601](http://scandipwa.local:5601)
 
 ## Want to get the demo content?
 
