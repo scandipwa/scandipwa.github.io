@@ -44,7 +44,7 @@ ScandiPWA v3 (currently in beta) supports frontend plugins, which allow reusing 
 
 ScandiPWA extension is M2 composer package with one extra directory - `scandipwa`. Inside of it ScandiPWA frontend-related functionality is stored. Any other M2 related folders with backend-related functionality can be stored in such package. You see `etc` and `Model` in this example, but these are not the only possible ones.
 
-All directories inside of `scandipwa` are optional, nevertheless following the provided structure is mandatory. You see `app` and `sw` subdirectories in it, these folders' structure is the same as you see in `vendor/scandipwa/source/src/(app|sw)` and they have the same meaning: inside of them are all parts that your extension requires: extra components, queries, routes etc.
+All _directories_ inside of `scandipwa` are optional, nevertheless following the provided structure is mandatory. You see `app` and `sw` subdirectories in it, these folders' structure is the same as you see in `vendor/scandipwa/source/src/(app|sw)` and they have the same meaning: inside of them are all parts that your extension requires: extra components, queries, routes etc.
 
 `Plugin` directory contains plugin definitions: which functionality parts are you plugging into and how you want to change their behaviour. More about that below.
 
@@ -55,19 +55,20 @@ All directories inside of `scandipwa` are optional, nevertheless following the p
  ┃ ┃ ┗ # ...
  ┃ ┣ 📂Model
  ┃ ┃ ┗ # ...
- ┃ ┗ 📂scandipwa  # Frontend-related functionality
- ┃   ┣ 📂 app     # Application logic
+ ┃ ┗ 📂scandipwa   # Frontend-related functionality
+ ┃   ┣ 📜 index.js # Plugin FE entry point - mandatory!
+ ┃   ┣ 📂 app      # Application logic
  ┃   ┃ ┣ 📂component
  ┃   ┃ ┣ 📂query
  ┃   ┃ ┣ 📂route
  ┃   ┃ ┣ 📂store
  ┃   ┃ ┣ 📂util
- ┃   ┃ ┗ 📂plugin # Plugging logic declarations
+ ┃   ┃ ┗ 📂plugin  # Plugging logic declarations
  ┃   ┃   ┗ 📜<SourceComponentName>.plugin.js
- ┃   ┗ 📂 sw      # Service Worker
+ ┃   ┗ 📂 sw       # Service Worker
  ┃     ┣ 📂handler
  ┃     ┣ 📂util
- ┃     ┗ 📂plugin # Plugging logic declarations
+ ┃     ┗ 📂plugin  # Plugging logic declarations
  ┃       ┗ 📜<SourceServiceWorkerFileName>.plugin.js
  ┗ 📜composer.json
 ```
@@ -96,38 +97,38 @@ Each member which wraps around a **_property_**  has the following arguments:
 - `instance` references the object you are plugging into.
 
 ```javascript
-    // This wraps around the member function, logs the arguments and adds one to the first argument
-    // It is essential that wrapper function is an arrow function!
-    // Otherwise other member functions will not be available from it.
-    aroundFunction = (args, callback, instance) => {
-        console.log(args); // [ ...arguments ]
-        args[0] += 1;
+// This wraps around the member function, logs the arguments and adds one to the first argument
+// It is essential that wrapper function is an arrow function!
+// Otherwise other member functions will not be available from it.
+const aroundFunction = (args, callback, instance) => {
+    console.log(args); // [ ...arguments ]
+    args[0] += 1;
 
-        // The context must ALWAYS be passed to the callback, using 'apply' for that
-        // Note that the original member (or the next plugin) will be called with changed arguments
-        callback.apply(instance, args);
+    // The context must ALWAYS be passed to the callback, using 'apply' for that
+    // Note that the original member (or the next plugin) will be called with changed arguments
+    callback.apply(instance, args);
+}
+
+// This wraps around a property
+const property = (initialProperty, instance) => {
+    return {
+        ...initialProperty,
+        // And adds this new value to it
+        someAddedValue: 'new value!'
     }
+}
 
-    // This wraps around a property
-    property = (originalMember, instance) => {
-        return {
-            ...originalMember,
-            // And adds this new value to it
-            someAddedValue: 'new value!'
-        }
-    }
+const classWrapper = (Class) => {
+    // Return the original class intact
+    return Class;
 
-    classWrapper = (Class) => {
-        // Return the original class intact
-        return Class;
+    // Return the original class wrapped into HOC or something else
+    return withRouter(Class);
+    return connect(...)(Class);
 
-        // Return the original class wrapped into HOC or something else
-        return withRouter(Class);
-        return connect(...)(...);
-
-        // Replace the original class with something else
-        return OtherClass;
-    }
+    // Replace the original class with something else
+    return OtherClass;
+}
 ```
 
 3. Create the configuration in the bottom of `.plugin.js` file. This object must be a default export. The following things are defined in this configuration:
@@ -148,7 +149,7 @@ Each member which wraps around a **_property_**  has the following arguments:
 
 - Name of the member to modify (for everything apart of 'function' and 'class' plugins)
 
-- Optional: a position, in which this plugin will be called. There may be multiple plugins for a single member if there are several extensions active in the application. The closer the position to 0 - the sooner it is called. The higher a position - the later. Non-unique.
+- Optional: a position, in which this plugin will be called. **Defaults to 100**. There may be multiple plugins for a single member if there are several extensions active in the application. The closer the position to 0 - the sooner it is called. The higher a position - the later. Non-unique.
 
 > **Note: you can create class members that do not exist in the original classes and they will be called as you'd expect writing them directly in the class**
 
@@ -158,48 +159,51 @@ Configuration should follow this format:
 const config = {
     namespace: {
         'member-function': {
-            '<name>': [
-                {
-                    position: A, // number
-                    implementation: B // function
-                }
-            ]
+            '<name>': Plugins1
         },
         'member-property': {
-            '<name>': [
-                {
-                    position: C,
-                    implementation: D
-                }
-            ]
+            '<name>': Plugins2
         },
         'static-member': {
-            '<name>': [
-                {
-                    position: E,
-                    implementation: F
-                }
-            ]
+            '<name>': Plugins3
         },
-        'function': [
-            // Reduced structure for functions
-            // because function is the only member of its namespace
-            {
-                position: G,
-                implementation: H
-            },
-            {
-                position: I,
-                implementation: J
-            }
-        ]
+
+        // Reduced structure for functions and classes
+        'function': Plugins4,
+        'class': Plugins5
     }
 }
 ```
 
-If the position at which plugin should be wrapped around the initial piece of functionality is not important, it can be omitted by using the concise configuration syntax. If a function is provided instead of an object.
+Where `Plugins` is either a function, an object or an Array of functions/objects. See valid `Plugins` blocks' example below.
 
-The example below demonstrates multiple syntax opportunities for writing a configuration part. It is equivalent to the one above.
+```javascript
+// Simplest option, you are going to use it in most cases
+const Plugins1 = A;
+
+// If you need more granular logic around one original member
+const Plugins2 = [B, C];
+
+// Specify a position to execute your plugins sooner/later in the pipeline
+const Plugins3 = {
+    position: 0,
+    implementation: aVeryImportantFunction
+};
+
+// Same as 2nd option, but with positions.
+const Plugins4 = [
+    {
+        position: 0,
+        implementation: oneMoreVeryImportantFunction
+    },
+    {
+        position: 1000,
+        implementation: notVeryImportantFunction
+    }
+];
+```
+
+The example below demonstrates an example of multiple syntax opportunities for writing a configuration part.
 
 ```javascript
 const config = {
@@ -222,28 +226,39 @@ const config = {
                 }
             ]
         },
-        'function': [ I, J ]
+        'function': [ I, J ],
+        'class': K
     }
 }
 ```
 
-4. Activate your plugin. In the FE root of your theme, there is a file called `scandipwa.json`. It is responsible for theme's configuration. Active plugins should be defined there.
+
+4. Having an `index.js` file in the root of your extension is mandatory. It should contain no logic, only a single export: array that consists of relative paths from that file to all the `.plugin.js` files your extension declares. See the example below.
+
+```javascript
+module.exports = [
+    './app/plugin/SomeAppPlugin.plugin.js',
+    './sw/plugin/SomeSWPlugin.plugin.js'
+]
+```
+
+
+5. Activate your plugin. In the FE root of your theme, there is a file called `scandipwa.json`. It is responsible for theme's configuration. Active plugins should be defined there.
 
 Contents:
 
 - `<extension name>`: should be picked by you, it is not related to any functionality, just denotes which plugin files are meant for which extension. Put anything you like here.
 
-- `<path>`: relative path from Magento root to `.plugin.js` file. Not that it's mandatory to have these paths in an array, even if only one is required for the extension.
+- `<path>`: a single relative path from Magento root to the `scandipwa/index.js` file.
 
 The format for the 'extensions' block of this file is the following:
 ```javascript
 {
     // ...
     "extensions": {
-        "<extension name>": [
-            "<path1>",
-            "<path2>"
-        ]
+        "<extension>": "<path>",
+        "<extension2>": "<path2>",
+        /** other extensions */
     }
     // ...
 }
