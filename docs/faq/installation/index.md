@@ -5,13 +5,13 @@ keywords:
 comments: false
 
 # Hero section
-title: FAQ
+title: FAQ about installation
 
 # Micro navigation
 micro_nav:
   enabled: true
-  url: '/docs/installation'
-  title: Installation
+  url: '/docs/faq'
+  title: FAQ
 
 ---
 

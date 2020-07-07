@@ -38,9 +38,9 @@ grid_navigation:
       cta: Read more
       url: '/docs/installation'
     - title: FAQ
-      excerpt: Common questions regarding the project installation.
+      excerpt: Common questions regarding the ScandiPWA project.
       cta: Read more
-      url: '/docs/installation/faq'
+      url: '/docs/faq'
     - title: Development
       excerpt: The best-practices working with ScandiPWA. Everything that the developer must know.
       cta: Read more
