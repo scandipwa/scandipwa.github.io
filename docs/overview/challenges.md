@@ -19,9 +19,6 @@ page_nav:
     prev:
         content: Introduction
         url: '/docs/overview'
-    next:
-        content: Existing solutions
-        url: '/docs/overview/existing-solutions'
 ---
 
 > **Note**: challenges described here are common to any SPA application. The ScandiPWA (and alternative solutions) way of solving those challenges is [described here](./existing_solutions.md).
