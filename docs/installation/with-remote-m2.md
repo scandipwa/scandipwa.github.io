@@ -260,7 +260,7 @@ ls
 
 Follow this simple algorithm:
 
-1. Refer to the [FAQ page](/docs/installation/faq). It most probably already has the solution to your problem.
+1. Refer to the [FAQ page](/docs/faq). It most probably already has the solution to your problem.
 
     > **Note**: the Docker setup related issues are also mentioned in this document.
 
