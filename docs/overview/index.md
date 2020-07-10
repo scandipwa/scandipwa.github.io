@@ -22,9 +22,7 @@ page_nav:
 <!-- 
 ScandiPWA is based on React and utilizes GraphQL API of Magento 2.3. The problem which our solution solves and the motivation behind the chosen technology stack can be found in the [introduction to ScandiPWA Technology Stack](/docs/overview/introduction/).
 
-Implementing the SPA is challenging. There are multiple limitations which must be addressed when going for CSR. Find out more about [SPA application challenges](/docs/overview/challenges/).
-
-Our solution is not the only one providing the SPA experience in the Magento ecosystem. To understand the main differences between the existing solutions, refer to [How we are different?](/docs/overview/existing-solutions/) section of the documentation. -->
+Implementing the SPA is challenging. There are multiple limitations which must be addressed when going for CSR. Find out more about [SPA application challenges](/docs/overview/challenges/). -->
 
 
 To understand it you are required to be familiar with the default Magento workflow as well as basic knowledge about how browsers work.
