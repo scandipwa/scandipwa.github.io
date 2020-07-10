@@ -26,5 +26,9 @@ grid_navigation:
       excerpt: In case you just want to run ScandiPWA locally using your remote server as a back-end.
       cta: Read more
       url: '/docs/installation/with-remote-m2'
+    - title: Upgrading to the latest version
+      excerpt: We make ScandiPWA better each day and this is a way to get the best version available.
+      cta: Read more
+      url: '/docs/installation/update'
 ---
 
