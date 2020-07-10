@@ -308,7 +308,7 @@ docker ps | grep mysql # get the container ID (i.e. d7886598dbe2)
 docker cp deploy/latest.sql <CONTAINER ID>:/tmp/dump.sql
 docker-compose exec mysql bash
 mysql -u root -pscandipwa -e "DROP DATABASE magento; CREATE DATABASE magento;"
-mysql -u root -pscandipwa < deploy/latest.sql
+mysql -u root -pscandipwa magento < /tmp/dump.sql
 
 
 # or if you have a mysql locally installed
