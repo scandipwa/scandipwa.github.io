@@ -32,7 +32,7 @@ The tools and editors are essential. For PHP - there is a standard "PHPStorm" fo
 The  VSCode extensions mentioned:
 - [Better comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments) - the comment highlights
 - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) - write without typos
-- [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) - remote debugger for chrome
+- [Debugger for Chrome](https://marketplace.visualstudio.com/items?itemName=msjsdiag.debugger-for-chrome) - remote debugger for chrome
 - [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) - JS code-style validator
 - [GitLense](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens) - better Git integration
 - [ScandiPWA VSCode snippets](https://github.com/scandipwa/scandipwa-development-toolkit) - ScandiPWA extension helper
