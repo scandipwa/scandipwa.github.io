@@ -19,6 +19,18 @@ micro_nav:
 
 Alternatively, write us in [Slack](https://join.slack.com/t/scandipwa/shared_invite/enQtNzE2Mjg1Nzg3MTg5LTQwM2E2NmQ0NmQ2MzliMjVjYjQ1MTFiYWU5ODAyYTYyMGQzNWM3MDhkYzkyZGMxYTJlZWI1N2ExY2Q1MDMwMTk).
 
+## "Type Error occurred when creating object: Magento\Framework\Search\Response\QueryResponse"
+
+The wrong version of elastic-search is installed. This might happen after migration to 2.14.0 from versions bellow. Try following:
+
+```bash
+dcf down # stop the stack
+docker volume ls | grep elasticsearch-data # lookup your project elastic-search volume
+docker volume rm <YOUR_VOLUME_NAME> # remove the old volume
+dcf pull # pull latest images, should include latest start.sh which sets M2 to right ES version
+dcf up -d # start the stack again
+```
+
 ## Search does not work, product can not be saved, can not complete checkout, Magento throwing: `Indexer handler is not available`
 
 The `elasticsearch` is might not be working. The reason of problems above can be seen in the logs of application container, to see the logs, use:
