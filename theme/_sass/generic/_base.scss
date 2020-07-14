@@ -28,6 +28,7 @@ body {
 	&::before,
 	&::after {
 		@include box-sizing(inherit);
+		word-break: break-all;
 	}
 }
 
