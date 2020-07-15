@@ -485,3 +485,9 @@ You have executed the installation in the wrong order. First must come the **pro
 ## ERROR: for <container> unauthorized ...
 
 In case issue like this is displayed, you need to login into docker-hub. Then docker will allow you to pull necessary images. See [official instruction](https://docs.docker.com/engine/reference/commandline/login/) to login.
+
+## Media not found
+
+Make sure that you follow the manual media installation instructions for your operating system - [MacOS](/docs/installation/docker/mac/) or [Linux](/docs/installation/docker/linux/).
+
+**Note**: Important that your media folder is path is `<PATH TO PROJECT ROOT>src/pub/media`. Such path is NOT correct `<PATH TO PROJECT ROOT>src/pub/media/media`.

@@ -274,35 +274,17 @@ To get the [demo.scandipwa.com](https://demo.scandipwa.com/) content (but withou
 
 5. Get the media files
 
-    There are two options to get the media files - automatic (using wget), and manual.
+    1. Download media files from [S3 bucket](https://scandipwa-public-assets.s3-eu-west-1.amazonaws.com/2.2.x-media.tar.gz)
 
-    - Get media files automatically
+    2. Move archive into the `<PATH TO PROJECT ROOT>src/pub/media` folder
 
-        > **Note**: the following command requires you to have the `wget` binary available. To check if it is available, use following command:
-
-        ```bash
-        wget --version # should output version ^1
-        ```
-
-        If the `wget` command is not found, follow [this guide](https://www.tecmint.com/install-wget-in-linux/) to get it. Else, or after installation, execute following command to download & extract media:
-
-        <!-- TODO: TEST FOLLOWING COMMAND -->
+    3. Extract the archive using following command:
 
         ```bash
-        wget -c https://scandipwa-public-assets.s3-eu-west-1.amazonaws.com/2.2.x-media.tar.gz -O - | sudo tar -xz -C <PATH TO PROJECT ROOT>src/pub/media
+        tar -zxvf scandipwa_media.tgz
         ```
 
-    - Get media files manually
-
-        1. Download media files from [S3 bucket](https://scandipwa-public-assets.s3-eu-west-1.amazonaws.com/2.2.x-media.tar.gz)
-
-        2. Move archive into the `<PATH TO PROJECT ROOT>src/pub/media` folder
-
-        3. Extract the archive using following command:
-
-            ```bash
-            tar -zxvf scandipwa_media.tgz
-            ```
+    > **Note**: Make sure that your media folder is path is `<PATH TO PROJECT ROOT>src/pub/media`. Such path is NOT correct `<PATH TO PROJECT ROOT>src/pub/media/media`.
 
 ## Want some development guidance?
 
