@@ -236,55 +236,43 @@ There are two ways to use the setup: with `frontend` container and without it. T
 
 5. To access the Kibana, go to [http://scandipwa.local:5601](http://scandipwa.local:5601)
 
-## Want to get the demo content?
+## Sample-data? Yes, please!
 
-To get the [demo.scandipwa.com](https://demo.scandipwa.com/) content (but without multi-store and languages) follow this step-by-step guide:
+The module `scandipwa/sample-data` includes following:
+- Small amount of products
+- 2 Categories
+- 3 CMS blocks
+- 3 CMS Pages
+- 1 Slider
+- 1 Menu
 
-1. Stop the `app` container, using following command:
+1. Execute into the `app` component:
 
     ```bash
     # if you have the alias set up
-    dc stop app
+    inapp bash
 
     # without aliases (not recommended)
-    docker-compose stop app
+    docker-compose -f docker-compose.yml -f docker-compose.local.yml -f docker-compose.ssl.yml -f docker-compose.frontend.yml exec -u user app
     ```
 
-2. Drop the existing database
+2. Require ScandiPWA sample-data:
 
     ```bash
-    docker-compose exec mysql mysql -u root -pscandipwa -e "DROP DATABASE magento; CREATE DATABASE magento;"
+    composer require scandipwa/sample-data
     ```
 
-3. Import the demo site database dump
+3. Run sample-data migration scripts:
 
     ```bash
-    docker-compose exec -T mysql mysql -u root -pscandipwa magento < deploy/latest.sql
+    magento se:up
     ```
 
-4. Recreate the infrastructure
+4. Flush configuration caches updated by migration:
 
     ```bash
-    # With frontend container
-    front terminate && front start
-
-    # Without frontend container
-    localtheme terminate && localtheme start
+    magento c:f
     ```
-
-5. Get the media files
-
-    1. Download media files from [S3 bucket](https://scandipwa-public-assets.s3-eu-west-1.amazonaws.com/2.2.x-media.tar.gz)
-
-    2. Move archive into the `<PATH TO PROJECT ROOT>src/pub/media` folder
-
-    3. Extract the archive using following command:
-
-        ```bash
-        tar -zxvf scandipwa_media.tgz
-        ```
-
-    > **Note**: Make sure that your media folder is path is `<PATH TO PROJECT ROOT>src/pub/media`. Such path is NOT correct `<PATH TO PROJECT ROOT>src/pub/media/media`.
 
 ## Want some development guidance?
 
