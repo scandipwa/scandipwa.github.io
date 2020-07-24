@@ -19,7 +19,7 @@ micro_nav:
 
 Alternatively, write us in [Slack](https://join.slack.com/t/scandipwa/shared_invite/enQtNzE2Mjg1Nzg3MTg5LTQwM2E2NmQ0NmQ2MzliMjVjYjQ1MTFiYWU5ODAyYTYyMGQzNWM3MDhkYzkyZGMxYTJlZWI1N2ExY2Q1MDMwMTk).
 
-## "Type Error occurred when creating object: Magento\Framework\Search\Response\QueryResponse"
+## "Type Error occurred when creating object: ..\Search\Response\QueryResponse"
 
 The wrong version of elastic-search is installed. This might happen after migration to 2.14.0 from versions bellow. Try following:
 
@@ -503,3 +503,62 @@ In case issue like this is displayed, you need to login into docker-hub. Then do
 Make sure that you follow the manual media installation instructions for your operating system - [MacOS](/docs/installation/docker/mac/) or [Linux](/docs/installation/docker/linux/).
 
 **Note**: Important that your media folder is path is `<PATH TO PROJECT ROOT>src/pub/media`. Such path is NOT correct `<PATH TO PROJECT ROOT>src/pub/media/media`.
+
+## Docker - port is already allocated
+
+If port is already allocated when running for steps - setup guide steps - Start the development-setup (optional) or Start the infrastructure in production-like mode:
+
+```bash
+$ docker-compose -f docker-compose.yml -f docker-compose.local.yml up
+```
+
+In order to fix it you have to stop aall running containers:
+
+```bash
+$ docker stop $(docker ps -aq)
+# OR
+$ sudo service <apache2> stop
+```
+
+After that and run launch command again:
+
+```bash
+$ docker-compose -f docker-compose.yml -f docker-compose.local.yml up
+```
+
+## dc and dcf won't work at the same time
+
+If you have dc and dcf running at the same time during steps - - Start the development-setup (optional) or Start the infrastructure in production-like mode it won't work. You have to terminate one of them.
+
+## ERROR: cp: missing destination file operand after
+
+Run the following commands:
+
+```bash
+$ cd <PATH TO PROJECT ROOT>/opt/cert
+$ sudo cp -f scandipwa-ca.pem /usr/local/share/ca-certificates/scandipwa-ca.pem
+```
+
+## ERROR: Shell - NET::ERR_CERT_AUTHORITY_INVALID
+
+Delete old certificate, create a new one and add it to the list of trusted certificates.
+
+## ERROR: please set composer_auth environment variable
+
+Delete old certificate, create a new one and add it to the list of trusted certificates.
+
+## ERROR: Database migration failed: manual action required
+
+The error can be experienced on the installation step "Start the development-setup (optional)" after running the following command:
+
+```bash
+$ docker-compose -f docker-compose.yml -f docker-compose.local.yml up
+```
+
+Resolve it by running the following commands:
+
+```bash
+$ composer update
+$ docker-composer up
+```
+
