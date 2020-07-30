@@ -562,3 +562,27 @@ $ composer update
 $ docker-composer up
 ```
 
+## How to add scandipwa-ca.pem into keychain for Ubuntu for base installation?
+
+There is no need to add it to keychain. Simply add it to Chrome:
+
+1. Go to chrome://settings/certificates
+2. Open ""Authorities"" 
+3. Add new one
+4. Make sure it is trusted to identify websites.
+
+## How to install ScandiPWA with docker from scratch with Magento?
+
+Please follow [the docker installation guide](https://docs.scandipwa.com/docs/installation/docker/).
+
+## Does ScandiPWA support VMWare setup?
+
+Currently only Linux and Mac local setup guides are provided and maintained. Please reach out in [community Slack](https://scandipwa.com/community#join-slack) for specific questions regarding other OS.
+
+## ERROR: NET::ERR_CERT_REVOKED > Issuer: ScandiPWA Certificate Authority
+
+Import the file scandipwa-fullchain.pem and allow both certifications.
+
+## ERROR: listen tcp 0.0.0.0:80: bind: address already in use
+
+The problem is that the port is already in use. Make sure to stop all other services running on port 80 to free it up.
