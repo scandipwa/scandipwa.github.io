@@ -586,3 +586,8 @@ Import the file scandipwa-fullchain.pem and allow both certifications.
 ## ERROR: listen tcp 0.0.0.0:80: bind: address already in use
 
 The problem is that the port is already in use. Make sure to stop all other services running on port 80 to free it up.
+
+## How to setup crons to allow the GraphQL queries when front-end is running on a different domain?
+
+Follow [the remote Magento 2 installation guide](https://docs.scandipwa.com/docs/installation/with-remote-m2/).
+
