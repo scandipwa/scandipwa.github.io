@@ -84,3 +84,46 @@ Site can be opened with HTTP and HTTPs by default on local.
 
 Ensure that newly created stores are added to your Nginx configuration.
 
+## Does ScandiPWA plan to implement TypeScript?
+
+The core will not migrate to TypeScript in a relatively long term. The extensions however - might be done in any language. This is because of the learning curve needed for TypeScript. We prefer simplier technology - most M2 developer are relatively unexperienced with JavaScript. The interfaces and some TypeScript based components might come with UI library in the future. It is important step for extensions, as there is a need to depend on some abstraction when writing an extension.
+
+## ERROR: no such file or directory, open '.../Scandiweb/pwa/package.json'
+
+Run the following Magento command from the container:
+
+```bash
+scandipwa:theme:bootstrap Scandiweb/pwa
+```
+
+If it fails please remove the folder app/design/frontend/Scandiweb/pwa
+
+## How to view real time code changes to the Theme?
+
+Create a file with the same name in app/design and watch the following [tutorial video](https://www.youtube.com/watch?v=LcM3DlQ8TbU) to learn how to customize it.
+
+## How to modify the root.phtlm on my custom theme?
+
+Change the file name of your index.production.phtml and change the path to it in webpack.
+
+## Can I extend constructors?
+
+Changes in constructor at this momemnt irrevertable. While we are working on making them extendable please override them completly.
+
+## Chrome extensions don't work.
+
+You can run chrome with WEB security disabled.
+
+## dcf up -d --remove-orphans can't bring frontend container up
+
+Running the following command solves it:
+
+```bash
+dcf build
+```
+
+After build just rerun the following command:
+
+```bash
+dcf up -d --remove-orphans
+```
