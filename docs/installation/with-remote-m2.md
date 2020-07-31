@@ -101,6 +101,8 @@ The theme can be developed in two modes - as contribution into core theme, or as
     }
     ```
 
+    > **Note**: Do not commit this change, if planning to use with docker.
+
 3. From the cloned theme folder, execute following:
 
     ```bash
@@ -133,6 +135,8 @@ The theme can be developed in two modes - as contribution into core theme, or as
         "proxy": "https://demo.scandipwa.com"
     }
     ```
+
+    > **Note**: Do not commit this change, if planning to use with docker.
 
 4. From the custom theme theme folder, execute following:
 
