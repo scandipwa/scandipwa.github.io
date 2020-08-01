@@ -127,3 +127,15 @@ After build just rerun the following command:
 ```bash
 dcf up -d --remove-orphans
 ```
+
+## What is the best practice to implement a new module between Magento and ScandiPWA?
+
+You should develop using ScandiPWA plugin mechanism - http://docs.scandipwa.com/docs/development/plugin-mechanism/
+
+## How ScandiPWA manages cache?
+
+1. Utilizes default Magento 2 cache control mechanism over X-Magento-Tags-Pattern header.
+2. Provides AddTagsToResponsePlugin to add entity headers to each GraphQl cacheable response.
+3. Utilizes custom Cache entity (singleton), to gather all entities, that were loaded during current request.
+4. Flush happens based on default cache_flush events for most entities.
+5. CMS pages has own event observers to track response/flush.
