@@ -130,7 +130,7 @@ dcf up -d --remove-orphans
 
 ## What is the best practice to implement a new module between Magento and ScandiPWA?
 
-You should develop using ScandiPWA plugin mechanism - http://docs.scandipwa.com/docs/development/plugin-mechanism/
+You should develop using [ScandiPWA plugin mechanism](http://docs.scandipwa.com/docs/development/plugin-mechanism/).
 
 ## How ScandiPWA manages cache?
 
