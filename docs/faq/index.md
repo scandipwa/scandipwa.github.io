@@ -20,6 +20,9 @@ grid_navigation:
     - title: Development
       cta: Read more
       url: '/docs/faq/development'
+    - title: Product Support
+      cta: Read more
+      url: '/docs/faq/product-support'
     - title: Billing & License
       cta: Read more
       url: '/docs/faq/billing-and-license'
