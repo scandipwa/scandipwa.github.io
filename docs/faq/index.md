@@ -20,6 +20,9 @@ grid_navigation:
     - title: Development
       cta: Read more
       url: '/docs/faq/development'
+    - title: What is PWA?
+      cta: Read more
+      url: '/docs/faq/pwa'
     - title: Product Support
       cta: Read more
       url: '/docs/faq/product-support'
