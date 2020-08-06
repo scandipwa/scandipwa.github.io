@@ -2,6 +2,8 @@
 
 This repository contains docs of ScandiPWA. These are now docs, old can be found here: https://github.com/scandipwa/docs
 
+> **DEPRECATED**: use https://github.com/scandipwa/docs.scandipwa.com
+
 ## Before you start
 
 1. Make sure the `gem` command is available:
